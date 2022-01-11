@@ -1,0 +1,98 @@
+id ,name,price ,feature,primaryimage,secondaryimage1,secondaryimage2,info,highlight,amount
+1,Amiri,1131,bandana-print denim jacket,https://cdn-images.farfetch-contents.com/15/87/77/18/15877718_33086517_1000.jpg,https://cdn-images.farfetch-contents.com/15/87/77/18/15877718_33083912_1000.jpg,https://cdn-images.farfetch-contents.com/15/87/77/18/15877718_33083914_480.jpg,"Denim, but different. Your favourite material like you've never seen it before, this piece from Amiri boasts a bandana print. What do you think?","blue,cotton,bandana print,
+spread collar,front button fastening,long sleeves,
+buttoned-cuff sleeves",10
+2,Nicholas Daley,547,tie dye beach shirt,https://cdn-images.farfetch-contents.com/16/66/04/84/16660484_32836038_1000.jpg,https://cdn-images.farfetch-contents.com/16/66/04/84/16660484_32835531_600.jpg,https://cdn-images.farfetch-contents.com/16/66/04/84/16660484_32833977_480.jpg,Groove is in the heart of your wardrobe. Case in point: This Nicholas Daley tie-dye beach shirt that's a blend of calming hues and ready to take things easy for once. Button in and feel laidback.,"blue and white,linen-cotton blend,camp collar,front button fastening,front pouch pockets,short sleeves",10
+3,Ksubi,315,distressed-knee slim-cut jeans,https://cdn-images.farfetch-contents.com/15/25/36/88/15253688_32712801_600.jpg,https://cdn-images.farfetch-contents.com/15/25/36/88/15253688_32712799_600.jpg,https://cdn-images.farfetch-contents.com/15/25/36/88/15253688_32712802_480.jpg,"Fashion is in your genes...and your jeans. In a slim-leg silhouette and ankle-length, this pair from Ksubi is sure to become the newest star of your AW20 wardrobe. Thank your DNA.","black,stretch-cotton,
+ribbed-knee detailing,slim cut,mid-rise,
+concealed front button,fastening,classic five pockets,
+ankle-length",10
+4,Sacai,2484,x Hank Willis patchwork reversible bomber jacker,https://cdn-images.farfetch-contents.com/16/18/40/22/16184022_32778776_1000.jpg,https://cdn-images.farfetch-contents.com/16/18/40/22/16184022_32778775_600.jpg,https://cdn-images.farfetch-contents.com/16/18/40/22/16184022_32779829_480.jpg,"Do you know that jacket you can always rely on? With a patchwork design on one side and a slogan print to the other, this reversible jacket will give you options. Which Sacai x Hank Willis side will you choose today?","blue/kahki-green,cotton,
+reversible,patchwork design,
+slogan print to the rear,classic collar,front zip fastening,long sleeves,two chest flap pockets,straight hem",10
+5,Stone Island,281,logo-print long-sleeve sweatshirt,https://cdn-images.farfetch-contents.com/16/15/81/16/16158116_33081071_1000.jpg,https://cdn-images.farfetch-contents.com/16/15/81/16/16158116_33078940_600.jpg,https://cdn-images.farfetch-contents.com/16/15/81/16/16158116_33078942_480.jpg,"Meet your new side fleece. This sweatshirt from Stone Island and its fleece construction is newer, younger, and just more full-of-life than your other sweatshirts. Just treat it with respect...fleece and thank you.","aqua blue,cotton-blend,
+logo print to the rear,round neck,long sleeves,ribbed cuffs,
+ribbed hem",10
+6,Maison Margiela,622,four-stitch straight-leg jeans,https://cdn-images.farfetch-contents.com/16/57/17/34/16571734_32428486_1000.jpg,https://cdn-images.farfetch-contents.com/16/57/17/34/16571734_32428497_600.jpg,https://cdn-images.farfetch-contents.com/16/57/17/34/16571734_32419398_480.jpg,"When the weekend calls, these Maison Margiela jeans make sure you’re ready. Not only will they keep you comfortable in their cotton-blend composition, they’ll also uplift your style with their four-stitch detail. Bring it on, friday.","stone grey,cotton-blend,
+signature four-stitch logo,
+contrast stitching,strap detailing,belt loops,front button and zip,fastening,
+two side inset pockets,two rear patch pockets,straight leg",10
+7,Phillip Plein,1837,logo-plaque bomber jacket,https://cdn-images.farfetch-contents.com/16/18/86/27/16188627_31843627_600.jpg,https://cdn-images.farfetch-contents.com/16/18/86/27/16188627_31727791_600.jpg,https://cdn-images.farfetch-contents.com/16/18/86/27/16188627_31727759_480.jpg,logo-plaque bomber jacket,"black,FF logo plaque,logo print to the rear,ribbed band collar,front zip fastening,longsleeves,sleeve zip pocket,two front flap pockets,ribbed hem,
+ribbed cuffs,",10
+8,Neighborhood,490,andscape-print short-sleeve shirt,https://cdn-images.farfetch-contents.com/16/09/80/09/16098009_32527609_1000.jpg,https://cdn-images.farfetch-contents.com/16/09/80/09/16098009_32526486_600.jpg,https://cdn-images.farfetch-contents.com/16/09/80/09/16098009_32527611_480.jpg,"What if you could have your favourite landscape on your favourite shirt? Thanks to Neighborhood, you can. With a landscape print all-over, with this short-sleeve shirt you won't need to be looking out of a window, only into the mirror. Enjoy the view.","multicolour,landscape print,
+spread collar,front button fastening,shortsleeves,chest patch pocket,straight hem",10
+9,Maison Margiela,375,graphic-logo cotton T-shirt,https://cdn-images.farfetch-contents.com/16/48/85/42/16488542_32152563_1000.jpg,https://cdn-images.farfetch-contents.com/16/48/85/42/16488542_32132239_600.jpg,https://cdn-images.farfetch-contents.com/16/48/85/42/16488542_32132240_480.jpg,It's a domino effect. Maison Margiela's signature numbers motif is hiding behind a graphic line print on this tee. Count us in.,"black,cotton,graphic print,
+signature four-stitch logo,
+round neck,short sleeves,
+straight hem",10
+10,Saint Laurent,736,tie dye logo crewneck sweatshirt,https://cdn-images.farfetch-contents.com/16/05/54/52/16055452_32778391_1000.jpg,https://cdn-images.farfetch-contents.com/16/05/54/52/16055452_32778390_600.jpg,https://cdn-images.farfetch-contents.com/16/05/54/52/16055452_32778392_1000.jpg,Let's get creative. Starting with your outfit for the day and slipping into Saint Laurent's crewneck sweatshirt that boasts a bold tie-dye pattern across the garment. Express yourself down to your wardrobe.,"green,cotton,round neck,
+ribbed-knit edge,long sleeves",10
+11,Purple Brand,294,distressed-look mid-rise jeans,https://cdn-images.farfetch-contents.com/16/15/93/89/16159389_32757123_600.jpg,https://cdn-images.farfetch-contents.com/16/15/93/89/16159389_32754244_600.jpg,https://cdn-images.farfetch-contents.com/16/15/93/89/16159389_32754247_600.jpg,"Denim for days - will you ever get enough? In a cotton-blend construction and a distressed-look, these jeans from Purple Brand are sure to complete your collection in one smooth move.","grey,cotton-blend,
+distressed effect,mid-rise,
+concealed front button, fastening,belt loops,
+classic five pockets,
+straight leg,ankle-length",10
+12,Martine Rose,750,Basset logo-print jumper,https://cdn-images.farfetch-contents.com/16/18/40/51/16184051_32793867_1000.jpg,https://cdn-images.farfetch-contents.com/16/18/40/51/16184051_32793869_600.jpg,https://cdn-images.farfetch-contents.com/16/18/40/51/16184051_32793870_600.jpg,"Be the captain of your own style. Made a sky-blue cotton blend and boasting a sailor print across the front, this ribbed-knit jumper will lead you to both style and comfort. Ready to be the master of the Martine Rose boat?","sky-blue,cotton-blend,
+ribbed knit,logo print to the front,crew neck,long sleeves,drop shoulder,
+straight hem",10
+13,Moncler,880,logo-patch puffer gilet,https://cdn-images.farfetch-contents.com/16/14/69/81/16146981_32971684_1000.jpg,https://cdn-images.farfetch-contents.com/16/14/69/81/16146981_32971685_600.jpg,https://cdn-images.farfetch-contents.com/16/14/69/81/16146981_32971686_600.jpg,"You'll huff, you'll puff...and you'll strut your stuff. But just because this puffer gilet from Moncler looks great on you, that doesn't give you the right to blow down anyone's home. Straw or not.","navy blue,logo patch at the chest,padded design,
+high neck,sleeveless",10
+14,Jil Sander,561,logo-print drawstring hoodie,https://cdn-images.farfetch-contents.com/16/17/72/36/16177236_32869280_1000.jpg,https://cdn-images.farfetch-contents.com/16/17/72/36/16177236_32867951_600.jpg,https://cdn-images.farfetch-contents.com/16/17/72/36/16177236_32869281_600.jpg,"Couch couture. With a logo print at the chest amid a traditional hoodie silhouette, this piece from Jil Sander is decadent yet comfortable, meaning that it looks just as good inside your apartment as it does out of it. But let's be honest, it deserves to be seen.","white,cotton,logo print at the chest,drawstring hood,
+long sleeves,ribbed cuffs,
+ribbed hem",10
+15,Heron Preston For Calvin Klein,245,straight-leg cotton jeans,https://cdn-images.farfetch-contents.com/16/67/10/56/16671056_32997039_1000.jpg,https://cdn-images.farfetch-contents.com/16/67/10/56/16671056_32998153_600.jpg,https://cdn-images.farfetch-contents.com/16/67/10/56/16671056_32998153_1000.jpg,"Thought you already had the perfect pair of jeans? Well, scratch that. With the perfect shade of blue for you to wear them with anything, this straight-leg pair will earn a special place in your closet - and your heart. Get ready to wear Heron Preston for Calvin Klein single day.","indigo blue,organic cotton-blend,logo patch to the rear,
+contrast stitching,belt loops,
+mid-rise,front button fastening,straight leg,
+classic five pockets",10
+16,Jacquemus,159,Haricots print T-shirt,https://cdn-images.farfetch-contents.com/15/90/26/58/15902658_32994407_1000.jpg,https://cdn-images.farfetch-contents.com/15/90/26/58/15902658_32995226_600.jpg,https://cdn-images.farfetch-contents.com/15/90/26/58/15902658_32994409_600.jpg,"You know it's always important to eat you greens, but sometimes you need a reminder. Let this Haricots print T-shirt from Jacquemus be that for you, aswell as being a great top to wear on sunnier days. ","white,cotton,round neck,
+jersey knit,straight hem,
+short sleeves,embroidered logo at the sleeve",10
+17,Heron Preston For Calvin Klein,301,button-up denim jacket,https://cdn-images.farfetch-contents.com/16/67/10/44/16671044_32972155_1000.jpg,https://cdn-images.farfetch-contents.com/16/67/10/44/16671044_32972157_600.jpg,https://cdn-images.farfetch-contents.com/16/67/10/44/16671044_32972157_1000.jpg,"Endure gale force winds, Earth-shattering thunder, blinding lightning storms...or just the weather event that is everyday life. Either way, this denim jacket from Heron Preston for Calvin Klein has you covered, literally. Layer up and look good.","blue,cotton,spread collar,
+front button fastening,
+front flap pockets,long sleeves,straight hem",10
+18,Palm Angels,185,New York sprayed logo T-shirt,https://cdn-images.farfetch-contents.com/16/73/94/67/16739467_32993248_1000.jpg,https://cdn-images.farfetch-contents.com/16/73/94/67/16739467_32992699_600.jpg,https://cdn-images.farfetch-contents.com/16/73/94/67/16739467_32993247_600.jpg,"Passport at the ready. With a New York logo print to the front, this T-shirt from Palm Angels is taking you on a journey through sleek casual style. All aboard.","black,cotton,logo print to the front,
+crew neck,short sleeves,
+straight hem",10
+19,Balmain,834,drawstring track pants,https://cdn-images.farfetch-contents.com/16/26/33/56/16263356_32868828_1000.jpg,https://cdn-images.farfetch-contents.com/16/26/33/56/16263356_32868825_600.jpg,https://cdn-images.farfetch-contents.com/16/26/33/56/16263356_32872531_600.jpg,"Take your sweats to the street. In a slim-leg silhouette, this pair of track pants from Balmain effortlessly transition you from your sofa, to the gym, to front row of Milan Fashion Week. Where will they take you?","black,cotton,
+drawstring fastening waist,
+mid-rise,slim cut,
+ribbed cuffs",10
+20,Amiri,476,Psych logo crew-neck T-shirt,https://cdn-images.farfetch-contents.com/15/87/75/42/15877542_32882674_1000.jpg,https://cdn-images.farfetch-contents.com/15/87/75/42/15877542_32883858_600.jpg,https://cdn-images.farfetch-contents.com/15/87/75/42/15877542_32883860_600.jpg,"Constructed from black cotton and boasting a graphic printto the front, this short-sleeve T-shirt from AMIRI is exactly what you need to move away from your usual plain T-shirt. Compliments await.","black,cotton,graphic print,
+logo print to the front,
+crew neck,short sleeves,
+straight hem",10
+21,Salvatore Ferragamo,1366,reversible paisley-print windbreaker,https://cdn-images.farfetch-contents.com/16/04/95/26/16049526_32790372_1000.jpg,https://cdn-images.farfetch-contents.com/16/04/95/26/16049526_32790371_600.jpg,https://cdn-images.farfetch-contents.com/16/04/95/26/16049526_32788756_600.jpg,"Pared-back black on one side, a paisley pattern that turns into an animalier motif on the other. With this reversible windbreaker from Salvatore Ferragamo, you're in total control of your style. Your call.","black/green,,reversible,
+paisley print,drawstring hood,front zip fastening,
+two side welt pockets,
+long sleeves,ribbed cuffs,
+elasticated hem",10
+22,Heron Preston,538,CAT CREWNECK POWER BLACK YELLOW,https://cdn-images.farfetch-contents.com/16/24/64/28/16246428_32980949_1000.jpg,https://cdn-images.farfetch-contents.com/16/24/64/28/16246428_32982202_600.jpg,https://cdn-images.farfetch-contents.com/16/24/64/28/16246428_32980950_600.jpg,Cat crewneck power black yellow,"Cotton 100%, Polyester 100%",10
+23,Phillip Plein,611,super straight cut skull jeans,https://cdn-images.farfetch-contents.com/15/89/39/07/15893907_29794345_1000.jpg,https://cdn-images.farfetch-contents.com/15/89/39/07/15893907_29792252_600.jpg,https://cdn-images.farfetch-contents.com/15/89/39/07/15893907_29794348_600.jpg,super straight cut skull jeans,"the destroyer blue, stretch-cotton denim, faded effect,
+ripped detailing,skull embroidery to the rear,
+logo patch to the rear,
+mid-rise,front button and zip, fastening,belt loops,
+classic five pockets,
+straight leg",10
+24,Lou Dalton,603,panelled chunky-knit jumper,https://cdn-images.farfetch-contents.com/15/00/75/67/15007567_32892287_600.jpg,https://cdn-images.farfetch-contents.com/15/00/75/67/15007567_32892288_600.jpg,https://cdn-images.farfetch-contents.com/15/00/75/67/15007567_32892289_600.jpg,"Ready to wrap up? Then let us introduce you to this jumper from Lou Dalton; in a panelled look and chunky-knit design, this piece is sure to keep you layered up and looking good throughout the weather event that is everyday life. What's 'knit' to love?","brown/black,wool/mohair blend,chunky knit,panelled design,round neck,long sleeves,straight hem",10
+25,Alanui,2213,Regenerated Icon jacquard cardigan,https://cdn-images.farfetch-contents.com/16/08/15/09/16081509_30724731_1000.jpg,https://cdn-images.farfetch-contents.com/16/08/15/09/16081509_30724730_600.jpg,https://cdn-images.farfetch-contents.com/16/08/15/09/16081509_30724732_600.jpg,"Warm and fuzzy? Yes, that's exactly how you'll feel as soon as you throw on this jacquard geometric knit cardigan from Alanui. It's hard not to.","white/multicolour,cashmere-wool blend,full jacquard,
+geometric panelled design,
+fringed edge,shawl lapels,
+V-neck,front button fastening,long sleeves,
+straight hem",10
+26,Polo Ralph Lauren,50,logo embroidered T-shirt,https://cdn-images.farfetch-contents.com/13/99/82/86/13998286_30725930_1000.jpg,https://cdn-images.farfetch-contents.com/13/99/82/86/13998286_30725931_600.jpg,https://cdn-images.farfetch-contents.com/13/99/82/86/13998286_30725933_600.jpg,"Authentic and iconic, Polo Ralph Lauren is a symbol of the modern preppy lifestyle. Combining Ivy League inspiration with All-American sporting style, the Polo Ralph Lauren collection appeals to all generations. This white cotton logo embroidered T-shirt from Polo Ralph Lauren features a round neck, short sleeves and a contrast embroidered logo to the chest.","White,Cotton 100%",10
+27,Ermnegildo Zegna,505,slim-fit jeans,https://cdn-images.farfetch-contents.com/16/30/27/15/16302715_32833963_1000.jpg,https://cdn-images.farfetch-contents.com/16/30/27/15/16302715_32836031_600.jpg,https://cdn-images.farfetch-contents.com/16/30/27/15/16302715_32836033_600.jpg,"A different day calls for the same quality pair of jeans. Bring some consistency into your life with Ermenegildo Zegna's jeans that are ready for whatever you have got lined up on your agenda. Dress them up, dress them down and show them off all around town.
+","blue,cotton blend,
+mid-rise,belt loops,
+button fly fastening,
+classic five pockets,
+silver-tone stud detailing,
+logo patch to the rear",10
+28,Jacquemus,323,La chemise Jean printed shirt,https://cdn-images.farfetch-contents.com/16/26/69/90/16266990_31112463_1000.jpg,https://cdn-images.farfetch-contents.com/16/26/69/90/16266990_31112462_600.jpg,https://cdn-images.farfetch-contents.com/16/26/69/90/16266990_31112465_600.jpg,"Getting your five-a-day is easy with Jacquemus. With a bowl of cherries printed onto the front of this white cotton shirt, you'll be dreaming of summer holidays. It's time to get booking.","white,cotton,fruit print,
+Cuban collar,drop shoulder,front button fastening,short sleeves,chest patch pocket,straight hem",10
+29,Off-White,493,Caravaggio print cotton hoodie,https://cdn-images.farfetch-contents.com/16/04/92/16/16049216_30883114_1000.jpg,https://cdn-images.farfetch-contents.com/16/04/92/16/16049216_30883116_600.jpg,https://cdn-images.farfetch-contents.com/16/04/92/16/16049216_30879859_600.jpg,"Sunday mornings just got better. Constructed from cotton, this Caravaggio print hoodie from Off-White is as comfortable as it is stylish. Now you can procrastinate like you're supposed to.","black/multicolour,
+cotton,graphic print,
+diagonal stripe print,
+drawstring hood,
+two front pouch, pockets,long sleeves,
+straight hem",10
+30,Phillip Plein,307,Original Platinum Cut T-shirt,https://cdn-images.farfetch-contents.com/14/01/70/72/14017072_18680157_1000.jpg,https://cdn-images.farfetch-contents.com/14/01/70/72/14017072_18680165_600.jpg,https://cdn-images.farfetch-contents.com/14/01/70/72/14017072_18680176_600.jpg,"With a provocative edge, Philip Plein delivers dynamic collections with rock and roll undertones and a sharp intuition for trends. This white cotton Original Platinum Cut T-shirt showcases the designer's knack for elevating everyday staples. Featuring a round neck, short sleeves and a hexagon logo plaque to the chest.","Made in Italy,Cotton 100%",10
