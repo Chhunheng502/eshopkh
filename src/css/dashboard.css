@@ -1,0 +1,59 @@
+.admin-dashboard .sidebar {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.admin-dashboard .table-style {
+  font-size: 0.85vw;
+}
+
+.admin-dashboard .popover-style {
+  cursor: pointer;
+  padding: 3px;
+}
+
+.admin-dashboard .popover-blue:hover {
+  color: dodgerblue;
+}
+
+.admin-dashboard .popover-red:hover {
+  color: red;
+}
+
+.admin-dashboard .table-center-align td {
+  vertical-align: middle;
+}
+
+.admin-dashboard .btn-toggle {
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+  background: #353535;
+  color: #fff;
+  text-align: center;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .admin-dashboard .btn-toggle {
+    display: flex;
+  }
+
+  .admin-dashboard .sidebar {
+    position: static;
+    height: 0;
+  }
+
+  .admin-dashboard .table-style {
+    font-size: 12px;
+  }
+}
+
+

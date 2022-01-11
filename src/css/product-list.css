@@ -1,0 +1,134 @@
+.headslider {
+    width: 90%;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+}
+
+.headslider-display {
+    width: 350px;
+    height: auto;
+    padding-bottom: 20px;
+    text-align: center;
+    color: black;
+    margin: 8px;
+    transition: all 0.3s;
+    border: 2px solid black;
+}
+
+.headslider-display .product-image img {
+    width: 295px;
+    height: 250px;
+    object-fit: contain;
+}
+
+.headslider-Lbtn {
+    position: absolute;
+    left: 2%;
+    top: 50%;
+}
+
+.headslider-Lbtn button {
+    color: black;
+    border: none;
+    background: none;
+}
+
+.headslider-Rbtn {
+    position: absolute;
+    right: 2%;
+    top: 50%;
+}
+
+.headslider-Rbtn button {
+    color: black;
+    border: none;
+    background: none;
+}
+
+@media screen and (max-width: 747.5px) {
+
+    .headslider-arrow {
+        top: 42%;
+    }
+
+    .headslider-arrow img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.headslider-display .info
+{
+    padding: 10px;
+    border-radius: 0 0 5px 5px;
+    margin-top: 1px;
+}
+
+.headslider-display .price {
+    /*width: 50%;*/
+    float: left;
+    margin-top: 5px;
+}
+
+.headslider-display .price h5 {
+    line-height: 20px;
+    margin: 0;
+}
+
+.headslider-display .price-text-color {
+    color: #00990E;
+}
+
+.headslider-display .info .rating {
+    color: #003399;
+}
+
+.headslider-display .rating {
+    /*width: 50%;*/
+    float: left;
+    font-size: 17px;
+    text-align: right;
+    line-height: 52px;
+    margin-bottom: 10px;
+    height: 52px;
+}
+
+.headslider-display .separator {
+    border-top: 1px solid #FFCCCC;
+}
+
+.headslider-display .clear-left {
+    clear: left;
+}
+
+.headslider-display .separator p {
+    line-height: 20px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.headslider-display .separator p i {
+    margin-right: 5px;
+}
+
+.headslider-display .btn-add {
+    width: 50%;
+    float: left;
+}
+
+.headslider-display .btn-add {
+    border-right: 1px solid #CC9999;
+}
+
+.headslider-display .btn-details {
+    width: 50%;
+    float: left;
+    padding-left: 10px;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  filter: invert(1);
+}
