@@ -16,7 +16,7 @@ class CreateProductDetailTable extends Migration
     {
         Schema::create('product_detail', function (Blueprint $table) {
             $table->id();
-            $table->integer('product_id');
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->text('primary_image');
             $table->text('secondary_image1');
             $table->text('secondary_image2');

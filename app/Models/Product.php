@@ -11,8 +11,8 @@ class Product extends Model
 
     protected $fillable = ['name','price','feature','quantity','type'];
 
-    public function getDetail()
+    public function detail()
     {
-        return $this->hasOne('App\Models\ProductDetail');
+        return $this->hasOne(ProductDetail::class);
     }
 }
