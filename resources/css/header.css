@@ -1,0 +1,21 @@
+.background-image {
+    position: relative;
+    opacity: 0.8;
+}
+
+.center-items-inImage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 2px black;
+    color: white;
+}
+
+.center-items-inImage form {
+    justify-content: center;
+}
+
+.nav-bar-color {
+    background-color: rgba(0, 0, 0, 0.2);
+}

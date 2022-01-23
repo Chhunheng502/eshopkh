@@ -1,0 +1,96 @@
+.detail-page-main {
+    padding: 0px 10px 50px 30px;
+}
+
+.detail-page-flex-container, .detail-page-flex-container-2 {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: white;
+    height: 550px;
+  }
+
+.detail-page-right-content > button {
+    box-sizing: border-box;
+    border-radius: 10px;
+    font-weight: 650;
+    margin-top: 40px;
+    font-size: 18px;
+}
+  
+.detail-page-flex-container > div {
+    background-color: white;
+    margin: 10px;
+    padding: 6px 24px 24x;
+    font-size: 20px;
+    flex-grow: 3;
+    text-align: center;
+}
+
+.detail-page-primary-img {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.detail-page-secondary-img-1 {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.detail-page-secondary-img-2 {
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.detail-page-right-content {
+    padding-top: 150px;
+}
+
+.detail-page-add-to-cart-button {
+    border-color: black;
+    background-color: black;
+    color: white;
+    width: 220px;
+    height: 44px;
+    position: sticky;
+}
+
+.detail-page-wish-list {
+    border-color: black;
+    background-color: white;
+    height: 44px;
+    widtH: 115px;
+    margin-left: 10px;
+}
+
+.detail-page-lower-part{
+    font-size: 20px;
+    line-height: 10px;
+    padding-top: 20px;
+}
+
+.detail-page-flex-container-2 {
+    margin-top: 40px;
+}
+
+.detail-page-flex-container-2 > div {
+    background-color: white;
+    padding: 6px 24px 24x;
+    font-size: 15px;
+    flex-grow: 3;
+}
+
+.container-1-flex-item-1 {
+    width: 33%;
+}
+
+.container-2-flex-item-1, .container-2-flex-item-2, .container-2-flex-item-3 {
+    width: 33%;
+}
+
+.container-2-flex-item-2 > li {
+    display: block;
+}
+
+.container-2-flex-item-2 {
+    margin-right: 30px;
+}

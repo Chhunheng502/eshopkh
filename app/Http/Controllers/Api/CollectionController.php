@@ -3,70 +3,23 @@
 namespace App\Http\Controllers\Api;
 
 use App\Models\Collection;
-use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CollectionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $collections = Collection::all();
+        $collections = Collection::with(['detail' => function($query) {
+            $query->with(['product' => function($query) {
+                $query->with('detail');
+            }]);
+        }])->get();
 
-        $result = [];
-
-        foreach($collections as $collection)
-        {
-            $products = Collection::findOrFail($collection->id)->getProducts;
-
-            $product_data = [];
-
-            foreach($products as $product)
-            {
-                $temp = Product::join('product_detail', 'products.id', '=', 'product_detail.product_id')
-                ->select('products.id', 'products.name', 'products.price', 'products.feature', 'products.quantity', 'products.type',
-                'product_detail.primary_image', 'product_detail.secondary_image1', 'product_detail.secondary_image2', 'product_detail.info',
-                'product_detail.highlight')
-                ->where('products.id', $product->product_id)
-                ->get();
-
-                array_push($product_data, $temp);
-            }
-
-            $data = [
-                'id' => $collection->id,
-                'name' => $collection->name,
-                'image' => $collection->image,
-                'products' => $product_data
-            ];
-
-            array_push($result, $data);
-        }
-
-        return $result;
+        return $collections;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $collection = Collection::create([
@@ -93,23 +46,19 @@ class CollectionController extends Controller
         return response()->json(['collection' => $collection]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function show($id, Request $request)
     {
-        //
+        $products = [];
+
+        foreach($request->all() as $collection) {
+            array_push($products, $collection['product']);
+        };
+
+        return Inertia::render('Product/List', [
+            'products' => $products
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, $id)
     {
         $collection = Collection::find($id);
@@ -129,24 +78,6 @@ class CollectionController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $collection = Collection::find($id);

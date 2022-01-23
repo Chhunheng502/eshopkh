@@ -5,25 +5,43 @@ namespace App\Http\Controllers\Api;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return Product::with('detail')->get();
+        $products = Product::with('detail')
+        ->filter(request(['search']))
+        ->get();
+        
+        return Inertia::render('Product/List', [
+            'products' => $products
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function showType($type)
+    {
+        $products = Product::with('detail')
+                ->where('type', $type)
+                ->get();
+
+        return Inertia::render('Product/List', [
+            'products' => $products
+        ]);
+    }
+
+    public function showProduct($type, $id)
+    {
+        $product = Product::with('detail')
+        ->where('id', $id)
+        ->get();
+
+        return Inertia::render('Product/Detail', [
+            'product' => $product[0]
+        ]);
+    }
+
     public function store(Request $request)
     {
 
@@ -76,12 +94,6 @@ class ProductController extends Controller
         return response('success');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $product = Product::find($id);

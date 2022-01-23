@@ -11,8 +11,8 @@ class Collection extends Model
 
     protected $fillable = ['name','image'];
 
-    public function getProducts()
+    public function detail()
     {
-        return $this->hasMany('App\Models\CollectionDetail');
+        return $this->hasMany(CollectionDetail::class);
     }
 }
