@@ -23,5 +23,17 @@ class Product extends Model
                 $query->where('name', 'like', '%' . $search . '%')
             )
         );
+
+        $query->when($filters['gs'] ?? false, fn($query, $sortVal) =>
+            $sortVal=='all' ? '' : $query->where(fn($query) =>
+                $query->where('type', 'like', '%' . $sortVal . '%')
+            )
+        );
+
+        $query->when($filters['ts'] ?? false, fn($query, $sortVal) =>
+            $sortVal=='all' ? '' : $query->where(fn($query) =>
+                $query->where('type', 'like', '%' . $sortVal . '%')
+            )
+        );
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Collection;
 use App\Http\Controllers\Controller;
+use App\Models\CollectionDetail;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -46,11 +47,15 @@ class CollectionController extends Controller
         return response()->json(['collection' => $collection]);
     }
 
-    public function show($id, Request $request)
+    public function show($id)
     {
+        $collectionDetail = CollectionDetail::with(['product' => function($query) {
+            $query->with('detail');
+        }])->where('collection_id', $id)->get();
+
         $products = [];
 
-        foreach($request->all() as $collection) {
+        foreach($collectionDetail as $collection) {
             array_push($products, $collection['product']);
         };
 

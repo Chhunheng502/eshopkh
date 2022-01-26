@@ -5,7 +5,7 @@
             <span class="badge bg-primary rounded-pill">{{ $store.state.itemInCart.length }}</span>
         </h4>
         <ul class="list-group mb-3">
-            <li v-for="item in $store.state.itemInCart" :key="item.id" class="list-group-item d-flex justify-content-between lh-sm">
+            <li v-for="item in $store.getters.sortedItemInCart" :key="item.id" class="list-group-item d-flex justify-content-between lh-sm">
                 <div>
                     <h6 class="my-0">
                         <i class="fa fa-minus-circle" @click="" style="cursor:pointer;color:red" aria-hidden="true"></i>

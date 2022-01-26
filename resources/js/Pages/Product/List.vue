@@ -9,7 +9,7 @@
                 </select>
                 <form class="inline-style">
                     <input
-                        class="form-control form-control"
+                        class="form-control"
                         type="search"
                         v-model="searchRef"
                         placeholder="Search"
@@ -19,7 +19,7 @@
             </div>
             <div class="interface-main">
                 <div class="interface-mainbar">
-                    <ProductItem v-for="product in sortableProducts" :key="product.id" :product="product" />
+                    <ProductCard v-for="product in sortableProducts" :key="product.id" :product="product" />
                 </div>
             </div>
         </div>
@@ -29,12 +29,12 @@
 <script>
 import { defineComponent } from 'vue'
 import AppLayout from '../../Layouts/AppLayout.vue'
-import ProductItem from './Item.vue'
+import ProductCard from '../../Components/ProductCard.vue'
 
 export default defineComponent({
     components: {
         AppLayout,
-        ProductItem
+        ProductCard
     },
 
     props: {

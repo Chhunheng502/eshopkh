@@ -17,11 +17,11 @@
             <div class="info">
                 <div class="separator clear-left">
                     <p class="btn-add">
-                        <i class="fa fa-shopping-cart"></i><span class="text-primary" onClick={props.onAdd} style="cursor:pointer">Add to cart</span>
+                        <i class="fa fa-shopping-cart"></i><span class="text-primary" @click="addToCart" style="cursor:pointer">Add To Cart</span>
                     </p>
                     <p class="btn-details">
                         <Link :href="'/products/' + product.type + '/' + product.id" style="text-decoration:none">
-                            <i class="fa fa-list text-dark"></i><span style="cursor:pointer">More details</span>
+                            <i class="fa fa-list text-dark"></i><span style="cursor:pointer">More Details</span>
                         </Link>
                     </p>
                 </div>
@@ -41,6 +41,12 @@ export default defineComponent({
 
     props: {
         product: Object
+    },
+
+    methods: {
+        addToCart() {
+            this.$store.commit('addItemToCart', this.product);
+        }
     }
 })
 </script>

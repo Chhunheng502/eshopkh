@@ -10,4 +10,9 @@ class OrderDetail extends Model
     protected $table = 'order_detail';
 
     protected $fillable = ['order_id','product_id','product_name','product_price','quantity'];
+
+    public function product()
+    {
+        return $this->hasOne(Product::class, 'id', 'product_id');
+    }
 }

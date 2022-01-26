@@ -5,7 +5,7 @@
                 <h1> Best Collection of <br /> This Month </h1>
                 <p> Give your wardrobe a re-vamp for the season ahead with the <br/> impressive collection of men’s designer clothes at eShop KH. </p>
                 <div class="text-center" style="margin-top:100px">
-                <Link href='/products/CM'> <button type="button" class="btn btn-primary"> Shop now </button> </Link>
+                <Link href='/products/CM'> <button type="button" class="btn btn-primary"> Shop Now </button> </Link>
                     <div class="p-3 mt-5">
                         <img src="https://preview.colorlib.com/theme/estore/assets/img/collection/collection1.png" alt="" />
                     </div>

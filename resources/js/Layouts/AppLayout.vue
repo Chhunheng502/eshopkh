@@ -22,10 +22,10 @@
                         class="position-absolute mt-2 bg-light shadow-lg"
                         style="z-index:50"
                     >
-                        <Link class="dropdown-item" href="/products/CM">Clothing</Link>
-                        <Link class="dropdown-item" href="/products/SM">Shoes</Link>
-                        <Link class="dropdown-item" href="/products/BM">Bags</Link>
-                        <Link class="dropdown-item" href="/products/AM">Accessories</Link>
+                        <Link class="dropdown-item" href="/products/cm">Clothing</Link>
+                        <Link class="dropdown-item" href="/products/sm">Shoes</Link>
+                        <Link class="dropdown-item" href="/products/bm">Bags</Link>
+                        <Link class="dropdown-item" href="/products/am">Accessories</Link>
                     </div>
                 </li>
                 <li class="nav-item position-relative">
@@ -44,10 +44,10 @@
                         class="position-absolute mt-2 bg-light shadow-lg"
                         style="z-index:50"
                     >
-                        <Link class="dropdown-item" href="/products/CW">Clothing</Link>
-                        <Link class="dropdown-item" href="/products/SW">Shoes</Link>
-                        <Link class="dropdown-item" href="/products/BW">Bags</Link>
-                        <Link class="dropdown-item" href="/products/AW">Accessories</Link>
+                        <Link class="dropdown-item" href="/products/cw">Clothing</Link>
+                        <Link class="dropdown-item" href="/products/sw">Shoes</Link>
+                        <Link class="dropdown-item" href="/products/bw">Bags</Link>
+                        <Link class="dropdown-item" href="/products/aw">Accessories</Link>
                     </div>
                 </li>
                 <li class="nav-item">
