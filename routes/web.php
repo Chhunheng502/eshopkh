@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminMenuController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\AppMenuController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductSearchController;
@@ -49,6 +50,6 @@ Route::get('admin/collection/{id}', [AdminMenuController::class, 'showCollection
 
 //need improvement
 Route::post('api/user/login', [AuthController::class, 'userLogin']);
-Route::post('api/user/register', [AuthController::class, 'userRegister']);
+Route::post('api/user/register', [UserController::class, 'store']);
 Route::post('api/orders', [OrderController::class, 'store']);
 
