@@ -8,7 +8,13 @@
                     <p>A place you can find everything in one click</p>
                 </div>
                 <form class="inline-style">
-                    <input class="form-control mr-sm-2" type="search" v-model="searchRef" placeholder="Search"/>
+                    <input
+                        type="search"
+                        class="form-control mr-sm-2"
+                        placeholder="Search"
+                        v-model="search"
+                        @keypress.enter.prevent="handleSearch"
+                    />
                     <button class="btn btn-success my-2 my-sm-0" type="button" @click="handleSearch">Search</button>
                 </form>
             </div>
@@ -18,17 +24,18 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 
 export default defineComponent({
     data() {
         return {
-            searchRef: ""
+            search: ""
         }
     },
 
     methods: {
         handleSearch() {
-            window.location.href = '/products?search=' + this.searchRef;
+            Inertia.get('/products', {search: this.search});
         }
     }
 })

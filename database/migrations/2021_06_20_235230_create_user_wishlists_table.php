@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Faq extends Migration
+class CreateUserWishlistsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class Faq extends Migration
      */
     public function up()
     {
-        Schema::create('faq', function (Blueprint $table) {
+        Schema::create('user_wishlists', function (Blueprint $table) {
             $table->id();
-            $table->string('type');
-            $table->text('question');
-            $table->text('answer');
+            $table->integer('user_id');
+            $table->string('product_id');
             $table->timestamps();
         });
     }
@@ -29,7 +28,6 @@ class Faq extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faq');
+        Schema::dropIfExists('user_wishlists');
     }
 }
-

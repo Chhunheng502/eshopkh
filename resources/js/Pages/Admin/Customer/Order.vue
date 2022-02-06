@@ -25,7 +25,7 @@
                         <td class="d-flex align-items-center justify-content-around">
                             <Modal>
                                 <template v-slot:wrapper>
-                                    <i class="fa fa-info-circle fa-lg text-primary"></i>
+                                    <i class="fa fa-info-circle fa-lg text-primary" style="cursor:pointer"></i>
                                 </template>
 
                                 <template v-slot:header>
@@ -55,7 +55,7 @@
                                     </table>
                                 </template>
                             </Modal>
-                            <i class="fa fa-check-circle fa-lg text-success"></i>
+                            <i class="fa fa-check-circle fa-lg text-success" style="cursor:pointer" @click="acceptOrder(order.id)"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -67,9 +67,11 @@
 
 <script>
 import { defineComponent } from 'vue'
-import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
-import Modal from '../../../Components/Modal.vue'
-import Pagination from '../../../Components/Pagination.vue'
+import { useForm } from '@inertiajs/inertia-vue3'
+
+import DashboardLayout from '@/Layouts/DashboardLayout.vue'
+import Modal from '@/Components/Modal.vue'
+import Pagination from '@/Components/Pagination.vue'
 
 export default defineComponent({
     components: {
@@ -80,6 +82,15 @@ export default defineComponent({
 
     props: {
         orders: Object
+    },
+
+    methods: {
+        acceptOrder(id) {
+            useForm({_method: 'put'}).post(`http://127.0.0.1:8000/api/orders/${id}`, {
+                preserveScroll: true,
+                onSuccess: () => console.log('success')
+            });
+        },
     }
 })
 </script>

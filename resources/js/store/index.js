@@ -8,6 +8,9 @@ const store = createStore({
     mutations: {
       addItemToCart (state, item) {
         state.itemInCart.push(item);
+      },
+      resetCart (state) {
+        state.itemInCart = []
       }
     },
     getters: {

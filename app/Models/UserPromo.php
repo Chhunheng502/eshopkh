@@ -7,7 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserPromo extends Model
 {
-    protected $table = 'user_promo';
-
-    protected $fillable = ['product_id','coupon_type','promo_code'];
+    protected $fillable = ['coupon_type','promo_code'];
 }

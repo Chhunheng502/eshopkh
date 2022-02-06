@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $table = 'orders';
-
     protected $fillable = ['user_id','total_cost','payment','is_accepted'];
 
-    public function user() {
+    public function user()
+    {
         return $this->hasOne(User::class, 'id', 'user_id');
     }
 

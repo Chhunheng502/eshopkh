@@ -6,7 +6,7 @@
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     <div v-for="collection in collection.data" class="col mb-3">
                         <div class="card shadow-sm w-50">
-                            <i class="fa fa-minus-circle p-1" @click="" style="cursor:pointer;color:red" aria-hidden="true"></i>
+                            <i class="fa fa-minus-circle p-1" @click="deleteProduct(collection.product.id)" style="cursor:pointer;color:red" aria-hidden="true"></i>
                             <img :src="collection.product.detail.primary_image" class="card-img-top" width="100" height="100" style="object-fit:contain" alt="" />
                             <div class="card-body">
                                 <div style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">
@@ -26,8 +26,10 @@
 
 <script>
 import { defineComponent } from 'vue'
-import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
-import Pagination from '../../../Components/Pagination.vue'
+import { useForm } from '@inertiajs/inertia-vue3'
+
+import DashboardLayout from '@/Layouts/DashboardLayout.vue'
+import Pagination from '@/Components/Pagination.vue'
 
 export default defineComponent({
     components: {
@@ -35,13 +37,18 @@ export default defineComponent({
         Pagination
     },
 
-    //should call this "collection"
     props: {
         collection: Object
     },
 
-    created() {
-        console.log(this.collection.data);
+    methods: {
+        deleteProduct(id) {
+            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/api/collections/detail/${id}`, {
+                preserveScroll: true,
+                onBefore: () => confirm('Are you sure you want to delete this product?'), // improve style on alert
+                onSuccess: () => console.log('success')
+            });
+        }
     }
 })
 </script>

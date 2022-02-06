@@ -11,7 +11,7 @@ use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Billable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -47,6 +47,22 @@ class User extends Authenticatable
     public function getWishlist()
     {
         return $this->hasMany('App\Models\UserWishlist');
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) =>
+            $query->where(fn($query) =>
+                $query->where('first_name', 'like', '%' . $search . '%')
+                        ->orWhere('last_name', 'like', '%' . $search . '%')
+            )
+        );
+
+        $query->when($filters['sort'] ?? false, fn($query, $sort) =>
+            $sort=='all' ? '' : $query->where(fn($query) =>
+                $query->where('gender', 'like', '%' . $sort . '%')
+            )
+        );
     }
 }
 

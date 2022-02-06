@@ -1,6 +1,8 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <Link class="navbar-brand" href="/">eShop KH</Link>
+        <Link class="navbar-brand" href="/">
+            <AppLogo />
+        </Link>
         <button class="navbar-toggler" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -58,14 +60,11 @@
                 </li>
             </ul>
         </div>
-        <div className="d-flex">
-            <div className="d-flex mr-1 mt-1">
-                <p className="p-1">{{ $store.state.itemInCart.length }}</p>
-                <Link href="/checkout"> <img src="images/cart.png" width="30" height="30" style="cursor:pointer;margin-right:2px" alt="" /> </Link>
-            </div>
-            <div class="nav-item position-relative">
+        <div className="d-flex" style="margin-right:10px">
+            <Link href="/user/login" class="nav-link text-secondary" v-if="!$page.props.auth.user"> Login </Link>
+            <div class="nav-item position-relative" v-else>
                 <a class="nav-link text-secondary dropdown-toggle" href="#" @click="openUserDropdown = !openUserDropdown">
-                Chhunheng Leng
+                {{ $page.props.auth.user.first_name }}
                 </a>
                 <div
                     v-show="openUserDropdown"
@@ -77,13 +76,17 @@
                 <div
                     v-show="openUserDropdown"
                     class="position-absolute mt-2 bg-light shadow-lg"
-                    style="z-index:50"
+                    style="z-index:50;"
                 >
                     <Link class="dropdown-item" href="">User Profile</Link>
                     <Link class="dropdown-item" href="">Coupon</Link>
                     <Link class="dropdown-item" href="">Track Orders</Link>
                     <Link class="dropdown-item" href="">Logout</Link>
                 </div>
+            </div>
+            <div className="d-flex mr-1 mt-1">
+                <Link href="/checkout"> <img src="http://127.0.0.1:8000/images/cart.png" width="30" height="30" style="cursor:pointer;margin-right:2px" alt="" /> </Link>
+                <p className="p-1">{{ $store.state.itemInCart.length }}</p>
             </div>
         </div>
     </nav>
@@ -96,10 +99,12 @@
 <script>
 import { defineComponent } from 'vue'
 import { Link } from '@inertiajs/inertia-vue3'
+import AppLogo from '@/Components/AppLogo.vue'
 
 export default defineComponent({
     components: {
-        Link
+        Link,
+        AppLogo
     },
 
     data() {

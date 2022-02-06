@@ -10,7 +10,7 @@
 
 <script>
 import { defineComponent } from 'vue'
-import AppLayout from '../../Layouts/AppLayout.vue'
+import AppLayout from '@/Layouts/AppLayout.vue'
 import AppHeader from './AppHeader.vue'
 import MainWrapper from './MainWrapper/Index.vue'
 import AppFooter from './AppFooter.vue'
@@ -21,6 +21,11 @@ export default defineComponent({
         AppHeader,
         MainWrapper,
         AppFooter
+    },
+
+    props: {
+        collections: Array,
+        collection: Array
     }
 })
 </script>

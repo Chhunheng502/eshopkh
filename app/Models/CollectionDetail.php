@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CollectionDetail extends Model
 {
-    protected $table = 'collection_detail';
-
     protected $fillable = ['product_id'];
 
     public function product()

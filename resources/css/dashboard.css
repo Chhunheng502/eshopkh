@@ -1,3 +1,12 @@
+.no-link-style {
+    color: #fff;
+    text-decoration: none;
+}
+
+.no-link-style:hover {
+    color: #fff;
+}
+
 .dashboard-header {
     text-align: center;
     font-size: 18px;
@@ -54,8 +63,10 @@
 }
 
 .fl-table thead th {
+    text-transform: uppercase;
     color: #ffffff;
     background: #4FC3A1;
+    cursor: pointer;
 }
 
 

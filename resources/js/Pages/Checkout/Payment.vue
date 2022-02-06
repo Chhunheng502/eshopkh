@@ -2,7 +2,7 @@
     <form id="payment-form">
         <input type="text" class="form-control mt-4" id="card-holder-name" placeholder="Card holder name" />
         <div class="mt-4" id="card-element"><!--Stripe.js injects the Card Element--></div>
-        <button type="button" class="btn btn-success mt-4" id="card-button" data-secret=""> Checkout Now </button >
+        <button type="button" class="btn btn-primary mt-4" id="card-button"> Checkout Now </button >
         <p id="card-error" role="alert"></p>
         <p id="card-success" class="result-message hidden">
             Payment succeeded, see the result in your
@@ -126,49 +126,45 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { Inertia } from '@inertiajs/inertia';
 
 export default defineComponent({
-    mounted() {
-        const stripe = Stripe('pk_test_51KFgiNGbmCzlw3yQUQWc5vYXQ3wCTPSwPu2OjmRuugZueBS8swRU0IJJOUlHuYvhgPflYtCUiaezMlHOWdp5mF3Y00cOjf3mAE');
-
-        const elements = stripe.elements();
-        const cardElement = elements.create('card');
-
-        cardElement.mount('#card-element');
-
-        const cardHolderName = document.getElementById('card-holder-name');
-        const cardButton = document.getElementById('card-button');
-        const clientSecret = cardButton.dataset.secret;
-
-        cardButton.addEventListener('click', async (e) => {
-            const { setupIntent, error } = await stripe.confirmCardSetup(
-                clientSecret, {
-                    payment_method: {
-                        card: cardElement,
-                        billing_details: { name: cardHolderName.value }
-                    }
-                }
-            );
-
-            if (error) {
-                var errorElement = document.querySelector("#card-error");
-                errorElement.textContent = error.message;
-            } else {
-                stripeTokenHandler(setupIntent);
-                document.querySelector("#card-success").classList.remove("hidden");
-            }
-        });
-
-        var stripeTokenHandler = function(setupIntent) {
-            var form = document.getElementById('payment-form');
-            var hiddenInput = document.createElement('input');
-            hiddenInput.setAttribute('type', 'hidden');
-            hiddenInput.setAttribute('name', 'paymentMethod');
-            hiddenInput.setAttribute('value', setupIntent.payment_method);
-            form.appendChild(hiddenInput);
-
-            form.submit();
-        }
+  methods: {
+    checkout(paymentMethod) {
+        Inertia.post('http://127.0.0.1:8000/api/orders', {paymentMethod: paymentMethod.id, data: this.$store.state.itemInCart}, {
+            onSuccess: () => this.$store.commit('resetCart')
+        })
     }
+  },
+
+  created() {
+    console.log(this.$page.props);
+  },
+
+  mounted() {
+    const stripe = Stripe('pk_test_51KFgiNGbmCzlw3yQUQWc5vYXQ3wCTPSwPu2OjmRuugZueBS8swRU0IJJOUlHuYvhgPflYtCUiaezMlHOWdp5mF3Y00cOjf3mAE');
+
+    const elements = stripe.elements();
+    const cardElement = elements.create('card');
+
+    cardElement.mount('#card-element');
+
+    const cardHolderName = document.getElementById('card-holder-name');
+    const cardButton = document.getElementById('card-button');
+
+    cardButton.addEventListener('click', async (e) => {
+        const { paymentMethod, error } = await stripe.createPaymentMethod(
+            'card', cardElement, {
+                billing_details: { name: cardHolderName.value }
+            }
+        );
+
+        if (error) {
+            console.log(error.message);
+        } else {
+            this.checkout(paymentMethod);
+        }
+    });
+  }
 })
 </script>

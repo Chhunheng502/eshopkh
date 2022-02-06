@@ -1,22 +1,23 @@
 <template>
-    <nav class="menu" tabindex="0">
-        <div class="smartphone-menu-trigger"></div>
-        <header class="avatar">
-            <img alt="Vue logo" src="images/logo.png">
-            <h2>John D.</h2>
-        </header>
-        <ul>
-            <li class="icon-overview"><Link href="/admin/dashboard"><span>Overview</span></Link></li>
-            <li class="icon-order"><Link href="/admin/order"><span>Order</span></Link></li>
-            <li class="icon-contact"><Link href="/admin/contact"><span>Contact</span></Link></li>
-            <li class="icon-inventory"><Link href="/admin/inventory"><span>Inventory</span></Link></li>
-            <li class="icon-collection"><Link href="/admin/collection"><span>Collection</span></Link></li>
-            <li class="icon-report"><span>Report</span></li>
-        </ul>
-    </nav>
-    <main class="px-5 py-2">
-        <slot></slot>
-    </main>
+	<div class="dashboard-body">
+		<nav class="menu" tabindex="0">
+			<div class="smartphone-menu-trigger"></div>
+			<header class="avatar">
+				<Link href="/"><AppLogo /></Link>
+			</header>
+			<ul>
+				<Link href="/admin/overview" class="no-link-style"><li class="icon-overview"><span>Overview</span></li></Link>
+				<Link href="/admin/order" class="no-link-style"><li class="icon-order"><span>Order</span></li></Link>
+				<Link href="/admin/contact" class="no-link-style"><li class="icon-contact"><span>Contact</span></li></Link>
+				<Link href="/admin/inventory" class="no-link-style"><li class="icon-inventory"><span>Inventory</span></li></Link>
+				<Link href="/admin/collection" class="no-link-style"><li class="icon-collection"><span>Collection</span></li></Link>
+				<li class="icon-report"><span>Report</span></li>
+			</ul>
+		</nav>
+		<main class="px-5 py-2 dashboard-main">
+			<slot></slot>
+		</main>
+	</div>
 </template>
 
 <style lang="less">
@@ -34,7 +35,7 @@
 @icon-url-collection: "https://icongr.am/entypo/folder.svg?size=128&color=ffffff";
 @icon-url-report: "https://icongr.am/entypo/pie-chart.svg?size=128&color=ffffff";
 
-body{
+.dashboard-body {
 	background:rgba( 71, 147, 227, 1);
 	margin:0;
 	font-family:"Open Sans", Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -42,9 +43,9 @@ body{
 	padding-left:@menu-width-desktop;
 }
 
-main{
+.dashboard-main {
 	position:relative;
-	height:100vh;
+	min-height:100vh;
 }
 
 .menu{
@@ -123,7 +124,7 @@ main{
 }
 
 @media screen and (max-width:900px) and (min-width:400px){
-	body{
+	.dashboard-body{
 		padding-left:@menu-width-tablet;
 	}
 	.menu{
@@ -202,7 +203,7 @@ main{
 }
 
 @media screen and (max-width:400px){
-	body{
+	.dashboard-body{
 		padding-left:0;
 	}
 	
@@ -259,10 +260,12 @@ main{
 
 <script>
 import { defineComponent } from 'vue'
+import AppLogo from '@/Components/AppLogo.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 
 export default defineComponent({
     components: {
+		AppLogo,
         Link
     }
 })

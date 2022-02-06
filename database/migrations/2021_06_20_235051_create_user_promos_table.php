@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserPromoTable extends Migration
+class CreateUserPromosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateUserPromoTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_promo', function (Blueprint $table) {
+        Schema::create('user_promos', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
             $table->string('product_id');
@@ -30,6 +30,6 @@ class CreateUserPromoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_promo');
+        Schema::dropIfExists('user_promos');
     }
 }

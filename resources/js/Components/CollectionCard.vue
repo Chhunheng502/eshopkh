@@ -16,9 +16,39 @@
                         {{ collection.name }}
                         <span class="text-secondary">{{ collection.detail.length }}</span>
                     </p>
-                    <form>
-                        <button type="button" class="btn-sm btn-primary"><i class="fa fa-edit"></i></button>
-                        <button type="button" class="btn-sm btn-danger mx-1"><i class="fa fa-trash"></i></button>
+                    <form class="d-flex align-items-center">
+                        <Modal ref="updateCollectionModal">
+                            <template v-slot:wrapper>
+                                <button type="button" class="btn-sm btn-primary" :disabled="form.progress"><i class="fa fa-edit"></i></button>
+                            </template>
+
+                            <template v-slot:header>
+                                <h5>Update Collection</h5>
+                            </template>
+
+                            <template v-slot:content>
+                                <form class="form-group">
+                                    <label for="collection-name">Name</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        style="margin-bottom:10px"
+                                        placeholder="Enter Name"
+                                        v-model="form.name"
+                                    >
+                                </form>
+                                <form class="form-group">
+                                    <label for="collection-image">Upload Image</label>
+                                    <input type="file" class="form-control" id="collection-image" @change="getFileUpload">
+                                </form>
+                            </template>
+
+                            <template v-slot:footer>
+                                <button type="button" class="btn btn-secondary" @click="$refs.updateCollectionModal.close()">Close</button>
+                                <button type="button" class="btn btn-primary" style="margin-left:5px" @click="updateCollection">Done</button>
+                            </template>
+                        </Modal>
+                        <button type="button" class="btn-sm btn-danger mx-1" @click="deleteCollection"><i class="fa fa-trash"></i></button>
                     </form>
                 </div>
                 <h5 v-else class="card-title">{{ collection.name }}</h5>
@@ -29,11 +59,14 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { Link } from '@inertiajs/inertia-vue3'
+
+import { Link, useForm } from '@inertiajs/inertia-vue3'
+import Modal from '@/Components/Modal'
 
 export default defineComponent({
     components: {
-        Link
+        Link,
+        Modal
     },
 
     props: {
@@ -41,6 +74,38 @@ export default defineComponent({
         isAdmin: {
             type: Boolean,
             default: false
+        }
+    },
+
+    data() {
+        return {
+            form: useForm({
+                _method: 'put',
+                name: this.collection.name,
+                image: this.collection.image
+            })
+        }
+    },
+
+    methods: {
+        getFileUpload(event) {
+            this.form.image = event.target.files[0];
+        },
+
+        updateCollection() {
+            this.form.post(`http://127.0.0.1:8000/api/collections/${this.collection.id}`, {
+                onSuccess: () => console.log('success')
+            });
+
+            this.$refs.updateCollectionModal.close()
+        },
+
+        deleteCollection() {
+            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/api/collections/${this.collection.id}`, {
+                preserveScroll: true,
+                onBefore: () => confirm('Are you sure you want to delete this collection?'), // improve style on alert
+                onSuccess: () => console.log('success')
+            });
         }
     }
 })

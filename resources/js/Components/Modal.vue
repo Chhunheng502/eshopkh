@@ -47,6 +47,7 @@
   width: 500px;
   max-width: 90%;
   background: #fff;
+  color: black;
   padding: 1em 2em;
 }
 

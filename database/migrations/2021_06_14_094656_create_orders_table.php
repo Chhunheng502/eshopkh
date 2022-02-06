@@ -17,8 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('total_cost');
-            $table->string('payment');
-            $table->boolean('is_accepted');
+            $table->boolean('is_accepted')->default(false);
             $table->timestamps();
         });
     }

@@ -3,20 +3,11 @@
     align-items: center;
 }
 
-.interface-main{
-    width:100%;
-    margin: auto;
+.interface-main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     overflow: hidden;
-}
-
-.interface-mainbar{
-    display:flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-left: 120px;
 }
 
 .favorite{

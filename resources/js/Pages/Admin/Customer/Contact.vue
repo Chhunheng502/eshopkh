@@ -6,11 +6,11 @@
                 <label for="sort-by-gender">Sort by gender:</label>
                 <select class="form-select" @change="handleSort" id="sort-by-gender">
                     <option value="all">All</option>
-                    <option value="M">Men</option>
-                    <option value="F">Women</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
                 </select>
             </div>
-            <SearchInput v-model="searchRef" />
+            <SearchInput v-model="search" />
         </div>
         <div class="table-wrapper">
             <table class="fl-table">
@@ -41,10 +41,11 @@
 <script>
 import { defineComponent } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
+import throttle from 'lodash/throttle'
 
-import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
-import SearchInput from '../../../Components/SearchInput.vue'
-import Pagination from '../../../Components/Pagination.vue'
+import DashboardLayout from '@/Layouts/DashboardLayout.vue'
+import SearchInput from '@/Components/SearchInput.vue'
+import Pagination from '@/Components/Pagination.vue'
 
 export default defineComponent({
     components: {
@@ -55,6 +56,21 @@ export default defineComponent({
 
     props: {
         users: Object
+    },
+
+    data() {
+        return {
+            search: ""
+        }
+    },
+
+    watch: {
+        search: throttle(function(value) {
+            Inertia.get(this.$page.url, {search: value}, {
+                preserveState: true,
+                replace: true
+            })
+        }, 500)
     },
 
     methods: {

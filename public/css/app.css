@@ -33,6 +33,15 @@
 .coupon .time {
     font-size: 1.6rem;
 }
+.no-link-style {
+    color: #fff;
+    text-decoration: none;
+}
+
+.no-link-style:hover {
+    color: #fff;
+}
+
 .dashboard-header {
     text-align: center;
     font-size: 18px;
@@ -89,8 +98,10 @@
 }
 
 .fl-table thead th {
+    text-transform: uppercase;
     color: #ffffff;
     background: #4FC3A1;
+    cursor: pointer;
 }
 
 
@@ -318,20 +329,11 @@
     align-items: center;
 }
 
-.interface-main{
-    width:100%;
-    margin: auto;
+.interface-main {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     overflow: hidden;
-}
-
-.interface-mainbar{
-    display:flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    width: 100%;
-    padding-left: 120px;
 }
 
 .favorite{

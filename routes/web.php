@@ -1,15 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\CollectionController;
-use App\Http\Controllers\Api\ProductController;
-use App\Models\Collection;
-use App\Models\CollectionDetail;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Controllers\AdminMenuController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\AppMenuController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ProductSearchController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,78 +19,36 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Home/Index');
-});
+// _don't forget to add middleware (route protection)
+// _need improvement for naming controller and route
+// _sort routes by order
 
-Route::get('products', [ProductController::class, 'index']);
-Route::get('products/{type}', [ProductController::class, 'showType']);
-Route::get('products/{type}/{id}', [ProductController::class, 'showProduct']);
+Route::get('/', [AppMenuController::class, 'index']);
+Route::get('/user/register', [AppMenuController::class, 'showRegisterForm']);
+Route::get('/user/login', [AppMenuController::class, 'showLoginForm']);
+Route::get('products/{type}', [AppMenuController::class, 'showProduct']);
+Route::get('products/{type}/{id}', [AppMenuController::class, 'showProductDetail']);
+Route::get('contact', [AppMenuController::class, 'showContact']);
+Route::get('about', [AppMenuController::class, 'showAbout']);
+Route::get('collections/{id}', [AppMenuController::class, 'showCollection']);
+Route::get('checkout', [AppMenuController::class, 'showCheckout']);
 
-Route::get('collections/{id}', [CollectionController::class, 'show']);
-
-Route::get('contact', function() {
-    return Inertia::render('Contact');
-});
-
-Route::get('about', function() {
-    return Inertia::render('About');
-});
-
-Route::get('checkout', function() {
-    return Inertia::render('Checkout/Index');
-});
-
-Route::get('admin', function() {
-    return Inertia::render('Admin/Auth');
-});
+Route::get('products', [ProductSearchController::class, 'index']);
 
 // -------------------- Admin Routes -------------------
 
-Route::get('admin/dashboard', function() {
-    return Inertia::render('Admin/Overview/Index');
-});
+Route::get('admin', [AdminMenuController::class, 'index']);
+Route::get('admin/overview', [AdminMenuController::class, 'showOverview']);
+Route::get('admin/order', [AdminMenuController::class, 'showOrder']);
+Route::get('admin/contact', [AdminMenuController::class, 'showContact']);
+Route::get('admin/inventory', [AdminMenuController::class, 'showInventory']);
+Route::get('admin/inventory/create', [AdminMenuController::class, 'showInventoryCreate']);
+Route::get('admin/inventory/edit/{id}', [AdminMenuController::class, 'showInventoryEdit']);
+Route::get('admin/collection', [AdminMenuController::class, 'showCollection']);
+Route::get('admin/collection/{id}', [AdminMenuController::class, 'showCollectionDetail']);
 
-Route::get('admin/order', function() {
-    return Inertia::render('Admin/Customer/Order', [
-        'orders' => Order::with(['detail', 'user'])
-                    ->where('is_accepted', false)
-                    ->paginate(15)
-    ]);
-});
+//need improvement
+Route::post('api/user/login', [AuthController::class, 'userLogin']);
+Route::post('api/user/register', [AuthController::class, 'userRegister']);
+Route::post('api/orders', [OrderController::class, 'store']);
 
-Route::get('admin/contact', function() {
-    return Inertia::render('Admin/Customer/Contact', [
-        'users' => User::filter(request(['search', 'sort']))
-                            ->paginate(15)
-                            ->withQueryString(),
-    ]);
-});
-
-Route::get('admin/inventory', function() {
-    return Inertia::render('Admin/Product/Inventory', [
-        'products' => Product::with('detail')
-                        ->filter(request(['search', 'gs', 'ts']))
-                        ->paginate(15)
-                        ->withQueryString(),
-        'filters'  => request('search')
-    ]);
-});
-
-Route::get('admin/collection', function() {
-    return Inertia::render('Admin/Product/Collection', [
-        'collections' => Collection::with(['detail' => function($query) {
-                            $query->with(['product' => function($query) {
-                                $query->with('detail');
-                            }]);
-                        }])->paginate(15)
-    ]);
-});
-
-Route::get('admin/collection/{id}', function($id) {
-    return Inertia::render('Admin/Product/CollectionDetail', [
-        'collection' => CollectionDetail::with(['product' => function($query) {
-                            $query->with('detail');
-                        }])->where('collection_id', $id)->paginate(15)
-    ]);
-});

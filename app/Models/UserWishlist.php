@@ -7,7 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserWishlist extends Model
 {
-    protected $table = 'user_wishlist';
-
-    protected $fillable = ['product_id'];
+    
 }

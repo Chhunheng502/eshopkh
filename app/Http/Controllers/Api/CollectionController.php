@@ -2,116 +2,88 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Models\Collection;
 use App\Http\Controllers\Controller;
+use App\Models\Collection;
 use App\Models\CollectionDetail;
+use App\Services\CollectionService;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class CollectionController extends Controller
 {
+    private $collectionService;
+
+    public function __construct(CollectionService $collectionService)
+    {
+        $this->collectionService = $collectionService;
+    }
+
     public function index()
     {
-        $collections = Collection::with(['detail' => function($query) {
-            $query->with(['product' => function($query) {
-                $query->with('detail');
-            }]);
-        }])->get();
-
-        return $collections;
+        return Collection::get();
     }
 
     public function store(Request $request)
     {
-        $collection = Collection::create([
+        $image_path = Storage::put('eshopkh', $request->image, 'public');
+
+        Collection::create([
             'name' => $request->name,
-            'image' => $request->image
+            'image' => Storage::url($image_path)
         ]);
 
-        return $collection->id;
+        return redirect()->back();
     }
 
-    public function addProducts(Request $request, $id)
+    public function storeProduct(Request $request, $id)
     {
-        $collection = Collection::find($id);
+        //might want to improve this logic
+        try {
+            foreach ($request->data as $product_id) {
+               $this->collectionService->addProduct($id, $product_id);
+            }
+         } catch (QueryException $exception) {
+            if($exception->getCode() == 23000) {
+                return back()->withErrors([
+                    'message' => 'duplicate items'
+                ]);
+            }
+         }
 
-        $arr = $request->products;
-
-        for($i = 0; $i < count($arr); $i++)
-        {
-            $collection->getProducts()->create([
-                'product_id' => $arr[$i]['id']
-            ]);
-        }
-
-        return response()->json(['collection' => $collection]);
-    }
-
-    public function show($id)
-    {
-        $collectionDetail = CollectionDetail::with(['product' => function($query) {
-            $query->with('detail');
-        }])->where('collection_id', $id)->get();
-
-        $products = [];
-
-        foreach($collectionDetail as $collection) {
-            array_push($products, $collection['product']);
-        };
-
-        return Inertia::render('Product/List', [
-            'products' => $products
+         //doesn't work because you put the route in api route
+        return back()->with([
+            'message' => 'success'
         ]);
     }
 
-    public function edit(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $collection = Collection::find($id);
 
         $collection->name = $request->name;
-        $collection->image = $request->image;
 
-        $result = $collection->save();
+        if(!is_string($request->image)) {
+            $image_path = Storage::put('eshopkh', $request->image, 'public');
+            $collection->image = Storage::url($image_path);
+        }
 
-        if($result)
-        {
-            return $id . ' has been edited';
-        }
-        else
-        {
-            return $id . ' has failed to edit';
-        }
+        $collection->save();
+
+        return redirect()->back();
     }
 
     public function destroy($id)
     {
-        $collection = Collection::find($id);
-        $products = Collection::findOrFail($id)->getProducts()->delete();
+        Collection::find($id)->delete();
 
-        $result = $collection->delete();
-
-        if($result)
-        {
-            return $id . ' has been deleted';
-        }
-        else
-        {
-            return $id . ' has failed to delete';
-        }
+        return redirect()->back();
     }
 
-    public function destroyProduct(Request $request)
+    public function destroyProduct($id)
     {
-        $result = Collection::find($request->collection_id)->getProducts()
-        ->where('product_id', $request->product_id)->delete();
+        CollectionDetail::where('product_id', $id)->delete();
 
-        if($result)
-        {
-            return 'success';
-        }
-        else
-        {
-            return 'failed';
-        }
+        return redirect()->back();
     }
 }
