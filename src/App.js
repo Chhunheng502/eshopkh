@@ -51,7 +51,7 @@ function App() {
     )
   });
 
-  var product_type = ['CM','CW','SM','SW','BM','BW','AM','AW'];
+  var product_type = ['cm','cw','sm','sw','bm','bw','am','aw'];var product_type = ['cm','cw','sm','sw','bm','bw','am','aw'];
 
   const products_type_routes = product_type.map(val => {
 
