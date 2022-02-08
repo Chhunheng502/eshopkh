@@ -15,7 +15,7 @@ function TrackOrder() {
 
         if(sessionStorage.getItem("user-id") !== null)
         {
-            axios.get(`https://eshopkh-api.herokuapp.com/api/orders/show/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/show/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 for(const data of response.data)
                 {
@@ -105,7 +105,7 @@ function TrackOrder() {
 
     const updateTableAfterCancel = (id) => {
     
-        axios.delete(`https://eshopkh-api.herokuapp.com/api/orders/delete/${id}`)
+        axios.delete(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/delete/${id}`)
         .then((response) => {
             console.log('Success:', response);
             window.location.reload();

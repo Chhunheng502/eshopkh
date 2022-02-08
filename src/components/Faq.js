@@ -14,7 +14,7 @@ function Faq(props) {
 
     useEffect(() => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/faq/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/faq/get')
         .then(response => {
             for (const data of response.data) {
                 if (data.type === 'General') {

@@ -24,7 +24,7 @@ function Coupon() {
 
         if(sessionStorage.getItem("user-id") !== null)
         {
-            axios.get(`https://eshopkh-api.herokuapp.com/api/users/promo/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/users/promo/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 for(let data of response.data)
                 {

@@ -16,7 +16,7 @@ function AdminProduct() {
 
         let tempArr = [];
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/products/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/products/get')
         .then((response) => {
             for(const data of response.data)
             {
@@ -150,7 +150,7 @@ function AdminProduct() {
 
     const updateTableAfterDeletion =  (id) => {
 
-        axios.delete(`https://eshopkh-api.herokuapp.com/api/products/delete/${id}`)
+        axios.delete(`https://eshopkh-p34hw.ondigitalocean.app/api/products/delete/${id}`)
         .then((response) => {
             console.log('Success:', response);
         })
@@ -220,7 +220,7 @@ function AdminProduct() {
             highlight: highlightRef.current.value
         };
 
-        axios.post('https://eshopkh-api.herokuapp.com/api/products/store',  myObj)
+        axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/products/store',  myObj)
         .then((response) => {
             const temp = {
                 id: response.data,
@@ -263,7 +263,7 @@ function AdminProduct() {
             quantity: quantityRef.current.value
         }
 
-        axios.put(`https://eshopkh-api.herokuapp.com/api/products/edit/${id}`, myObj)
+        axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/products/edit/${id}`, myObj)
         .then((response) => {
             console.log('Success:', response);
         })
@@ -310,7 +310,7 @@ function AdminProduct() {
             'products': temp
         };
 
-        axios.post(`https://eshopkh-api.herokuapp.com/api/collections/add-products/${collectionRef.current.value}`, myObj)
+        axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/collections/add-products/${collectionRef.current.value}`, myObj)
         .then((response) => {
             console.log('Success:', response);
         })
@@ -475,7 +475,7 @@ function AddToCollectionModal(props) {
     const [contents, setContent] = useState([]);
 
     useEffect (() => {
-        axios.get('https://eshopkh-api.herokuapp.com/api/collections/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/collections/get')
         .then((response) => {
             for(const data of response.data)
             {

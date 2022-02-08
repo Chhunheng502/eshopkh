@@ -22,7 +22,7 @@ function UserProfile() {
 
         if(sessionStorage.getItem("user-id") !== null)
         {
-            axios.get(`https://eshopkh-api.herokuapp.com/api/users/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/users/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 setUser(response.data);
                 console.log('Success:', response);
@@ -31,7 +31,7 @@ function UserProfile() {
                 console.error('Error:', error);
             });
 
-            axios.get(`https://eshopkh-api.herokuapp.com/api/orders/show/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/show/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 let temp = [];
                 for(const data of response.data)
@@ -48,7 +48,7 @@ function UserProfile() {
                 console.error('Error:', error);
             });
 
-            axios.get(`https://eshopkh-api.herokuapp.com/api/users/promo/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/users/promo/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 setCouponCount(response.data.length);
                 console.log('Success:', response);
@@ -57,7 +57,7 @@ function UserProfile() {
                 console.error('Error:', error);
             });
 
-            axios.get(`https://eshopkh-api.herokuapp.com/api/users/wishlist/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/users/wishlist/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 setWishlist(response.data.length);
                 console.log('Success:', response);
@@ -93,7 +93,7 @@ function UserProfile() {
                 password: passRef.current.value !== null ? passRef.current.value : null
             }
     
-            axios.put(`https://eshopkh-api.herokuapp.com/api/users/${Number(sessionStorage.getItem("user-id"))}`, myObj)
+            axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/users/${Number(sessionStorage.getItem("user-id"))}`, myObj)
             .then((response) => {
                 setUser(response.data);
                 console.log('Success:', response);

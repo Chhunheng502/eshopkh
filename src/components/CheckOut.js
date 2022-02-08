@@ -116,7 +116,7 @@ function CheckOut(props) {
             detail: detail
         };
 
-        axios.post('https://eshopkh-api.herokuapp.com/api/orders/store',  dataObj)
+        axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/orders/store',  dataObj)
         .then((response) => {
             if(response.data === 'success')
             {
@@ -141,7 +141,7 @@ function CheckOut(props) {
             setOfCodes.push(data.promo_code);
         }
 
-        axios.post(`https://eshopkh-api.herokuapp.com/api/users/promo/delete/${Number(sessionStorage.getItem("user-id"))}`, {promo_code: setOfCodes})
+        axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/users/promo/delete/${Number(sessionStorage.getItem("user-id"))}`, {promo_code: setOfCodes})
         .then((response) => {
             console.log('Success:', response);
         })
@@ -167,7 +167,7 @@ function CheckOut(props) {
 
         event.preventDefault();
 
-        axios.post(`https://eshopkh-api.herokuapp.com/api/users/promo/redeem/${Number(sessionStorage.getItem("user-id"))}`, {promo_code: codeRef.current.value})
+        axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/users/promo/redeem/${Number(sessionStorage.getItem("user-id"))}`, {promo_code: codeRef.current.value})
         .then((response) => {
             const begunDate =  new Date(String(response.data[0].created_at).split('T')[0]);
             const valid_date = 30 - msToDay(currentDate.getTime() - begunDate.getTime());

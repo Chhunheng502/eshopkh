@@ -10,7 +10,7 @@ function AdminFaq() {
 
     useEffect(() => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/faq/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/faq/get')
         .then((response) => {
             for (const data of response.data) {
                 setContent(oldContents => [...oldContents, data]);
@@ -24,7 +24,7 @@ function AdminFaq() {
 
     const handleDeletion = (id) => {
         console.log(id)
-        axios.delete(`https://eshopkh-api.herokuapp.com/api/faq/${id}`)
+        axios.delete(`https://eshopkh-p34hw.ondigitalocean.app/api/faq/${id}`)
         .then((response) => {
             console.log('Success:', response);
         })
@@ -72,7 +72,7 @@ function AdminFaq() {
             answer: answerRef.current.value,
         }
 
-        axios.put(`https://eshopkh-api.herokuapp.com/api/faq/${id}`, myObj)
+        axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/faq/${id}`, myObj)
         .then((response) => {
             console.log('Success:', response);
         })

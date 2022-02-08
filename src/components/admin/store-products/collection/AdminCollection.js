@@ -25,7 +25,7 @@ function AdminCollection() {
 
     const getData = async () => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/collections/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/collections/get')
         .then((response) => {
             for(const data of response.data)
             {
@@ -84,7 +84,7 @@ function AdminCollection() {
             image: imageRef.current.value
         }
 
-        axios.post('https://eshopkh-api.herokuapp.com/api/collections/store',  myObj)
+        axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/collections/store',  myObj)
         .then((response) => {
             console.log('Success:', response);
             const temp = {
@@ -148,7 +148,7 @@ function AdminCollection() {
             image: imageRef.current.value
         }
 
-        axios.put(`https://eshopkh-api.herokuapp.com/api/collections/edit/${id}`, myObj)
+        axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/collections/edit/${id}`, myObj)
         .then((response) => {
             console.log('Success:', response);
         })
@@ -165,7 +165,7 @@ function AdminCollection() {
 
     const updateTableAfterDeletion =  (id, index) => {
 
-        axios.delete(`https://eshopkh-api.herokuapp.com/api/collections/delete/${id}`)
+        axios.delete(`https://eshopkh-p34hw.ondigitalocean.app/api/collections/delete/${id}`)
         .then((response) => {
             console.log('Success:', response);
         })

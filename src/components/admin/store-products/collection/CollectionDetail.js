@@ -49,7 +49,7 @@ function CollectionDetail(props) {
             product_id: product_id
         }
 
-        axios.post(`https://eshopkh-api.herokuapp.com/api/collections/delete-product`, myObj)
+        axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/collections/delete-product`, myObj)
         .then((response) => {
             console.log('Success:', response);
         })

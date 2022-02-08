@@ -40,7 +40,7 @@ function AdminHome() {
 
     useEffect(() => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/home/content/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/home/content/get')
         .then((response) => {
             for (const data of response.data) {
                 if(Number(data.type) === 1)
@@ -106,7 +106,7 @@ function AdminHome() {
             }
         ];
 
-        axios.post('https://eshopkh-api.herokuapp.com/api/home/content', {data: myData})
+        axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/home/content', {data: myData})
         .then((response) => {
             console.log('Success:', response);
         })
@@ -159,7 +159,7 @@ function AdminHome() {
             }
         ];
 
-        axios.post('https://eshopkh-api.herokuapp.com/api/home/content', {data: myData})
+        axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/home/content', {data: myData})
         .then((response) => {
             console.log('Success:', response);
         })

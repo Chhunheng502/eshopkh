@@ -11,7 +11,7 @@ function Dashboard() {
 
     useEffect (() => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/orders/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/orders/get')
         .then((response) => {
             
             for(const data of response.data)
@@ -381,7 +381,7 @@ if(numberOfUsers === 0)
 {
     let currentDate = new Date();
 
-    axios.get('https://eshopkh-api.herokuapp.com/api/users')
+    axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/users')
     .then((response) => {
 
         for(let data of response.data)

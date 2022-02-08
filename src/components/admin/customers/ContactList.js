@@ -18,7 +18,7 @@ function ContactList() {
 
     useEffect (() => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/users')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/users')
         .then((response) => {
 
             for(const data of response.data)
@@ -169,7 +169,7 @@ function ContactList() {
         {
             if(document.getElementById(`contact-${data.id}`) !== null && document.getElementById(`contact-${data.id}`).checked === true)
             {
-                axios.post(`https://eshopkh-api.herokuapp.com/api/users/promo/${data.id}`, myObj)
+                axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/users/promo/${data.id}`, myObj)
                 .then((response) => {
                     console.log('Success:', response);
                 })
@@ -294,7 +294,7 @@ function GiveCouponModal(props) {
 
     useEffect (() => {
 
-        axios.get('https://eshopkh-api.herokuapp.com/api/products/get')
+        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/products/get')
         .then((response) => {
             for(const data of response.data)
             {
