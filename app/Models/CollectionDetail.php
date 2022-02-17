@@ -13,4 +13,11 @@ class CollectionDetail extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
+    public function scopeWithDetail($query)
+    {
+        return  $query->with(['product' => function($query) {
+                    $query->with('detail');
+                }]);
+    }
 }

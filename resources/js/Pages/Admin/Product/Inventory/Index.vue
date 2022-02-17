@@ -1,9 +1,7 @@
 <template>
     <DashboardLayout>
         <h2 class="dashboard-header">Product Inventory</h2>
-        <div v-if="$page.props.flash.message" class="alert">
-            {{ $page.props.flash.message }}
-        </div>
+        <FlashMessage />
         <div class="dashboard-event">
             <div class="d-flex">
                 <div class="form-group">
@@ -53,7 +51,7 @@
                             <form class="d-flex justify-content-center">
                                 <Modal ref="addToCollectionModal">
                                     <template v-slot:wrapper>
-                                        <button type="button" class="btn btn-primary" @click="fetchCollections"><i class="fa fa-arrow-circle-right"></i> Collection</button>
+                                        <button type="button" class="btn btn-primary"><i class="fa fa-arrow-circle-right"></i> Collection</button>
                                     </template>
 
                                     <template v-slot:header>
@@ -111,10 +109,10 @@
 import { defineComponent } from 'vue'
 import { Inertia } from '@inertiajs/inertia'
 import throttle from 'lodash/throttle'
-import axios from 'axios'
 import $ from 'jquery'
 
 import DashboardLayout from '@/Layouts/DashboardLayout.vue'
+import FlashMessage from '@/Components/FlashMessage.vue'
 import { Link, useForm } from '@inertiajs/inertia-vue3'
 import SearchInput from '@/Components/SearchInput.vue'
 import Modal from '@/Components/Modal.vue'
@@ -123,6 +121,7 @@ import Pagination from '@/Components/Pagination.vue'
 export default defineComponent({
     components: {
         DashboardLayout,
+        FlashMessage,
         Link,
         SearchInput,
         Modal,
@@ -131,6 +130,7 @@ export default defineComponent({
 
     props: {
         products: Object,
+        collections: Array,
         filters: Object
     },
 
@@ -142,7 +142,6 @@ export default defineComponent({
             sort: this.filters.sort ?? '',
             selectedItems: [],
             selectedCollection: 'default',
-            collections: []
         }
     },
 
@@ -193,40 +192,18 @@ export default defineComponent({
             }
         },
 
-        fetchCollections() {
-            if(!this.collections.length) {
-                axios.get('http://127.0.0.1:8000/api/collections')
-                .then(response => {
-                    this.collections = response.data;
-                }).catch(errors => {
-                    console.log(errors);
-                });
-            };
-        },
-
         addToCollection() {
-            Inertia.post(`http://127.0.0.1:8000/api/collections/detail/${this.selectedCollection}`, {data: this.selectedItems}, {
+            Inertia.post(`http://127.0.0.1:8000/collections/detail/${this.selectedCollection}`, {data: this.selectedItems}, {
                 preserveState: true,
-                onSuccess: () => this.resetSelect()
+                onSuccess: () => this.resetSelect(),
+                onError: (e) => console.log(e)
             });
-
-            // .then(response => {
-            //     //might want to improve this logic (should only apply this login in the errors part)
-            //     if(response.data.error) {
-            //         alert(response.data.message);
-            //     } else {
-            //         console.log(response.data);
-            //     }
-            //     this.resetSelect();
-            // }).catch(errors => {
-            //     console.log(errors);
-            // });
 
             this.$refs.addToCollectionModal.close();
         },
 
         deleteSelectedProducts() {
-            Inertia.post('http://127.0.0.1:8000/api/products/many', {data: this.selectedItems}, {
+            Inertia.post('http://127.0.0.1:8000/products/many', {data: this.selectedItems}, {
                 preserveScroll: true,
                 onBefore: () => confirm('Are you sure you want to delete this product?'), // improve style on alert
                 onSuccess: () => this.resetSelect()
@@ -244,7 +221,7 @@ export default defineComponent({
         },
 
         deleteProduct(id) {
-            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/api/products/${id}`, {
+            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/products/${id}`, {
                 preserveScroll: true,
                 onBefore: () => confirm('Are you sure you want to delete this product?'), // improve style on alert
                 onSuccess: () => console.log('success')

@@ -16,8 +16,10 @@ class CreateCollectionDetailsTable extends Migration
         Schema::create('collection_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('collection_id');
-            $table->foreignId('product_id')->unique()->constrained()->cascadeOnDelete();
+            $table->foreignId('product_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
+
+            $table->unique(['product_id', 'collection_id']);
         });
     }
 

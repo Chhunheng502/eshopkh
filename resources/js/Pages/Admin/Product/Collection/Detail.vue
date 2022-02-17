@@ -43,7 +43,7 @@ export default defineComponent({
 
     methods: {
         deleteProduct(id) {
-            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/api/collections/detail/${id}`, {
+            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/collections/detail/${id}`, {
                 preserveScroll: true,
                 onBefore: () => confirm('Are you sure you want to delete this product?'), // improve style on alert
                 onSuccess: () => console.log('success')

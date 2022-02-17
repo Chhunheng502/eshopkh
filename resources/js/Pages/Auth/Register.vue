@@ -110,7 +110,7 @@ export default defineComponent({
 
     methods: {
         register() {
-            this.form.post('http://127.0.0.1:8000/api/user/register', {
+            this.form.post('http://127.0.0.1:8000/user', {
                 onSuccess: () => this.form.reset('password'),
                 onError: (e) => console.log(e)
             });

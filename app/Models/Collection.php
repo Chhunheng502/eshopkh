@@ -13,4 +13,33 @@ class Collection extends Model
     {
         return $this->hasMany(CollectionDetail::class);
     }
+
+    public function scopeWithDetail($query)
+    {
+        return $query->with(['detail' => function($query) {
+                    $query->with(['product' => function($query) {
+                        $query->with('detail');
+                    }]);
+                }]);
+    }
+
+    public function getFirst()
+    {
+        return $this->withDetail()
+                    ->first()
+                    ->detail;
+    }
+
+    public function getAll()
+    {
+        return $this->withDetail()
+                    ->paginate(15);
+    }
+
+    public function getCollection($id)
+    {
+        return CollectionDetail::withDetail()
+                                ->where('collection_id', $id)
+                                ->paginate(15);
+    }
 }

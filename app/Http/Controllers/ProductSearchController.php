@@ -8,13 +8,17 @@ use Inertia\Inertia;
 
 class ProductSearchController extends Controller
 {
+    protected $product;
+
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     public function index()
     {
         return Inertia::render('Product/Index', [
-            'products' => Product::with('detail:id,product_id,primary_image')
-                            ->filter(request(['search', 'sort']))
-                            ->paginate(15)
-                            ->withQueryString(),
+            'products' => $this->product->getAll(),
             'filters' => [
                 'search' => request('search'),
                 'sort' => request('sort')

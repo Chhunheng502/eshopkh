@@ -93,7 +93,7 @@ export default defineComponent({
         },
 
         updateCollection() {
-            this.form.post(`http://127.0.0.1:8000/api/collections/${this.collection.id}`, {
+            this.form.post(`http://127.0.0.1:8000/collections/${this.collection.id}`, {
                 onSuccess: () => console.log('success')
             });
 
@@ -101,7 +101,7 @@ export default defineComponent({
         },
 
         deleteCollection() {
-            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/api/collections/${this.collection.id}`, {
+            useForm({_method: 'delete'}).post(`http://127.0.0.1:8000/collections/${this.collection.id}`, {
                 preserveScroll: true,
                 onBefore: () => confirm('Are you sure you want to delete this collection?'), // improve style on alert
                 onSuccess: () => console.log('success')

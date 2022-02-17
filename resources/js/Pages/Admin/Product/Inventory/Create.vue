@@ -109,8 +109,9 @@ export default defineComponent({
         },
 
         create() {
-            this.form.post('http://127.0.0.1:8000/api/products', {
-                onSuccess: () => console.log('success')
+            this.form.post('http://127.0.0.1:8000/products', {
+                onSuccess: () => console.log('success'),
+                onError: (e) => console.log(e)
             });
         }
     }

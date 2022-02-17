@@ -43,4 +43,64 @@ class Product extends Model
             )
         );
     }
+
+    public function scopeWithDetail($query)
+    {
+        return $query->with(['detail' => function($query) {
+                    $query->selectNecessary();
+                }])
+                ->filter(request(['search', 'sort']))
+                ->paginate(15)
+                ->withQueryString();
+    }
+
+    public function scopeType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+
+    public function scopeCollection($query, $id)
+    {
+        return $query->whereIn('id', collect(
+                        CollectionDetail::where('collection_id', $id)
+                        ->get('product_id')->toArray()
+                    )->flatten()
+                );
+    }
+
+    public function getAll()
+    {
+        return $this->withDetail();
+    }
+
+    public function getAllForAdmin()
+    {
+        return $this->with('detail')
+                ->filter(request([
+                    'gender',
+                    'type',
+                    'search',
+                    'sort',
+                ]))
+                ->paginate(15)
+                ->withQueryString();
+    }
+
+    public function getByType($type)
+    {
+        return $this->type($type)
+                    ->withDetail();
+    }
+
+    public function getDetail($id)
+    {
+        return Product::find($id)
+                ->with('detail')
+                ->get()[0];
+    }
+
+    public function getByCollection($id) {
+        return $this->collection($id)
+                    ->withDetail();
+    }
 }

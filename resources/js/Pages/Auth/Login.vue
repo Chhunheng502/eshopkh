@@ -68,8 +68,9 @@ export default defineComponent({
 
     methods: {
         login() {
-            this.form.post('http://127.0.0.1:8000/api/user/login', {
-                onSuccess: () => this.form.reset('password')
+            this.form.post('http://127.0.0.1:8000/user/login', {
+                onSuccess: () => this.form.reset('password'),
+                onError: (e) => console.log(e)
             });
         }
     }

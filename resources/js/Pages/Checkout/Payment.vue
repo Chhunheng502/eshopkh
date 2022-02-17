@@ -131,14 +131,19 @@ import { Inertia } from '@inertiajs/inertia';
 export default defineComponent({
   methods: {
     checkout(paymentMethod) {
-        Inertia.post('http://127.0.0.1:8000/api/orders', {paymentMethod: paymentMethod.id, data: this.$store.state.itemInCart}, {
-            onSuccess: () => this.$store.commit('resetCart')
+        Inertia.post('http://127.0.0.1:8000/orders',
+        {
+          paymentMethod: paymentMethod.id,
+          orders: this.$store.state.itemInCart,
+          reduction: this.$store.state.coupons.reduce((total, num) => total + num, 0)
+        },
+        {
+            onSuccess: () => {
+              this.$store.commit('resetCart');
+              this.$store.commit('resetCoupons');
+            }
         })
     }
-  },
-
-  created() {
-    console.log(this.$page.props);
   },
 
   mounted() {

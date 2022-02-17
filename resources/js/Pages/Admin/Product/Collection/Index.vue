@@ -5,6 +5,7 @@
             {{ form.progress.percentage }}%
         </progress>
         <h2 class="dashboard-header">Product Collections</h2>
+        <FlashMessage />
         <div class="d-flex justify-content-end">
             <Modal ref="newCollectionModal">
                 <template v-slot:wrapper>
@@ -61,6 +62,7 @@ import { defineComponent } from 'vue'
 import { useForm } from '@inertiajs/inertia-vue3'
 
 import DashboardLayout from '@/Layouts/DashboardLayout.vue'
+import FlashMessage from '@/Components/FlashMessage.vue'
 import Modal from '@/Components/Modal.vue'
 import CollectionCard from '@/Components/CollectionCard.vue'
 import Pagination from '@/Components/Pagination.vue'
@@ -68,6 +70,7 @@ import Pagination from '@/Components/Pagination.vue'
 export default defineComponent({
     components: {
         DashboardLayout,
+        FlashMessage,
         Modal,
         CollectionCard,
         Pagination
@@ -93,11 +96,10 @@ export default defineComponent({
         },
 
         create() {
-            this.form.post('http://127.0.0.1:8000/api/collections', {
-                onSuccess: () => console.log('success')
+            this.form.post('http://127.0.0.1:8000/collections', {
+                onSuccess: () => this.$refs.newCollectionModal.close(),
+                onError: (e) => console.log(e)
             });
-
-            this.$refs.newCollectionModal.close()
         }
     }
 })

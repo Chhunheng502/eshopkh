@@ -11,7 +11,7 @@
 				<Link href="/admin/contact" class="no-link-style"><li class="icon-contact"><span>Contact</span></li></Link>
 				<Link href="/admin/inventory" class="no-link-style"><li class="icon-inventory"><span>Inventory</span></li></Link>
 				<Link href="/admin/collection" class="no-link-style"><li class="icon-collection"><span>Collection</span></li></Link>
-				<li class="icon-report"><span>Report</span></li>
+				<Link href="/admin/report" class="no-link-style"><li class="icon-report"><span>Report</span></li></Link>
 			</ul>
 		</nav>
 		<main class="px-5 py-2 dashboard-main">

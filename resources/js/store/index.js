@@ -3,7 +3,8 @@ import createPersistedState from "vuex-persistedstate"
 
 const store = createStore({
     state: {
-      itemInCart: []
+      itemInCart: [],
+      coupons: []
     },
     mutations: {
       addItemToCart (state, item) {
@@ -11,6 +12,12 @@ const store = createStore({
       },
       resetCart (state) {
         state.itemInCart = []
+      },
+      addCoupon(state, value) {
+        state.coupons.push(value);
+      },
+      resetCoupons() {
+        state.coupons = []
       }
     },
     getters: {

@@ -78,10 +78,10 @@
                     class="position-absolute mt-2 bg-light shadow-lg"
                     style="z-index:50;"
                 >
-                    <Link class="dropdown-item" href="">User Profile</Link>
-                    <Link class="dropdown-item" href="">Coupon</Link>
-                    <Link class="dropdown-item" href="">Track Orders</Link>
-                    <Link class="dropdown-item" href="">Logout</Link>
+                    <Link class="dropdown-item" href="/user">User Profile</Link>
+                    <Link class="dropdown-item" href="/user/coupon">Coupon</Link>
+                    <Link class="dropdown-item" href="/user/order">Track Orders</Link>
+                    <Link class="dropdown-item" href="/user/logout" method="delete" as="button" type="button">Logout</Link>
                 </div>
             </div>
             <div className="d-flex mr-1 mt-1">
