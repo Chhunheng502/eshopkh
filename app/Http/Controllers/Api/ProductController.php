@@ -65,7 +65,7 @@ class ProductController extends Controller
             'highlight' => $request->highlight
         ]);
 
-        return $product->id;
+        return 'success';
     }
 
     /**
