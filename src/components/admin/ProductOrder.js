@@ -17,7 +17,7 @@ function ProductOrder() {
 
     const getData = async () => {
 
-        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/orders/get')
+        axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/orders/get')
         .then((response) => {
             for(const data of response.data)
             {
@@ -206,7 +206,7 @@ function ProductOrder() {
 
     const handleCancelOrder = (id) => {
 
-        axios.delete(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/delete/${id}`)
+        axios.delete(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/orders/delete/${id}`)
         .then((response) => {
             console.log('Success:', response);
             setContent(contents.filter(item => item.id !== id));
@@ -218,7 +218,7 @@ function ProductOrder() {
 
     const handleAcceptOrder = (id) => {
 
-        axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/update/${id}`)
+        axios.put(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/orders/update/${id}`)
         .then((response) => {
             console.log('Success:', response);
             setContent(contents.filter(item => item.id !== id));
@@ -236,7 +236,7 @@ function ProductOrder() {
         {
             if(document.getElementById(`order-${data.id}`) !== null && document.getElementById(`order-${data.id}`).checked === true)
             {
-                axios.delete(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/delete/${data.id}`)
+                axios.delete(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/orders/delete/${data.id}`)
                 .then((response) => {
                     console.log('Success:', response);
                 })
@@ -262,7 +262,7 @@ function ProductOrder() {
         {
             if(document.getElementById(`order-${data.id}`) !== null && document.getElementById(`order-${data.id}`).checked === true)
             {
-                axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/orders/update/${data.id}`)
+                axios.put(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/orders/update/${data.id}`)
                 .then((response) => {
                     console.log('Success:', response);
                 })

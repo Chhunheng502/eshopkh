@@ -11,7 +11,7 @@ function SalesReport() {
 
     useEffect (() => {
 
-        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/orders/get')
+        axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/orders/get')
         .then((response) => {
             
             for(const data of response.data)
@@ -394,7 +394,7 @@ var users_data = [];
 
 if(users_data.length === 0)
 {
-    axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/users')
+    axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/users')
     .then((response) => {
 
         for(const data of response.data)

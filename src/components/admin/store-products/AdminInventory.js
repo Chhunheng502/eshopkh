@@ -14,7 +14,7 @@ function AdminInventory() {
 
         let tempArr = [];
 
-        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/products/get')
+        axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/products/get')
         .then((response) => {
             for(const data of response.data)
             {
@@ -170,7 +170,7 @@ function AdminInventory() {
             quantity: myData
         }
 
-        axios.put(`https://eshopkh-p34hw.ondigitalocean.app/api/products/update/${id}`, myObj)
+        axios.put(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/products/update/${id}`, myObj)
         .then((response) => {
             console.log('Success:', response);
         })

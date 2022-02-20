@@ -34,7 +34,7 @@ function RegisterForm(props)
                         address: addressRef.current.value 
                     };
             
-                    axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/users',  dataObj)
+                    axios.post('https://eshopkh-server-4xrg3.ondigitalocean.app/api/users',  dataObj)
                     .then((response) => {
                         props.history.push('/login');
                         console.log('Success:', response);

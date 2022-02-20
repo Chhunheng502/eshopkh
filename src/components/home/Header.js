@@ -21,7 +21,7 @@ function Header() {
         {
             setLogined(true);
 
-            axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/users/${Number(sessionStorage.getItem("user-id"))}`)
+            axios.get(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/users/${Number(sessionStorage.getItem("user-id"))}`)
             .then((response) => {
                 setUser(response.data);
                 console.log('Success:', response);

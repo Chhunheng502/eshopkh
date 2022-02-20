@@ -22,7 +22,7 @@ function AdminLogin(props) {
 
         let isLogined = false;
 
-        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/admin')
+        axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/admin')
         .then((response) => {
 
             for(const data of response.data)

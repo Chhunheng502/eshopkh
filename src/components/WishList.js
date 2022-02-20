@@ -8,7 +8,7 @@
 
     useEffect (() => {
 
-        axios.get(`https://eshopkh-p34hw.ondigitalocean.app/api/users/wishlist/${Number(sessionStorage.getItem("user-id"))}`)
+        axios.get(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/users/wishlist/${Number(sessionStorage.getItem("user-id"))}`)
         .then((response) => {
             for(const data of response.data)
             {
@@ -24,7 +24,7 @@
 
     const handleDropping = (id) => {
 
-        axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/users/wishlist/delete/${Number(sessionStorage.getItem("user-id"))}/${id}`)
+        axios.post(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/users/wishlist/delete/${Number(sessionStorage.getItem("user-id"))}/${id}`)
         .then((response) => {
             console.log('Success:', response);
         })

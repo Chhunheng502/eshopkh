@@ -30,7 +30,7 @@ function Home() {
 
     useEffect (() => {
 
-        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/collections/get')
+        axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/collections/get')
         .then((response) => {
             for(const data of response.data)
             {
@@ -122,7 +122,7 @@ function Home() {
 
     useEffect(() => {
 
-        axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/home/content/get')
+        axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/home/content/get')
         .then((response) => {
             for (const data of response.data) {
                 if(Number(data.type) === 1)
@@ -157,7 +157,7 @@ function Home() {
 
     const handleSearch = async () => {
 
-        await axios.get('https://eshopkh-p34hw.ondigitalocean.app/api/products/get')
+        await axios.get('https://eshopkh-server-4xrg3.ondigitalocean.app/api/products/get')
         .then((response) => {
             setProducts(response.data.filter(item => String(item.name).toLowerCase().includes(String(searchRef.current.value).toLowerCase())));
             console.log('Success:', response);

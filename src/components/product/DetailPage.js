@@ -14,7 +14,7 @@ function DetailPage(props) {
 
     const handleAddToWishlist = () => {
 
-        axios.post(`https://eshopkh-p34hw.ondigitalocean.app/api/users/wishlist/${Number(sessionStorage.getItem("user-id"))}/${props.data.id}`)
+        axios.post(`https://eshopkh-server-4xrg3.ondigitalocean.app/api/users/wishlist/${Number(sessionStorage.getItem("user-id"))}/${props.data.id}`)
         .then((response) => {
             console.log('Success:', response);
         })

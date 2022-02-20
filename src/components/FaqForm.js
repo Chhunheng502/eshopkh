@@ -23,7 +23,7 @@ function FaqForm(props){
         props.onHide();     
         try{
             let temp_id = null;
-            await axios.post('https://eshopkh-p34hw.ondigitalocean.app/api/faq/post', text)
+            await axios.post('https://eshopkh-server-4xrg3.ondigitalocean.app/api/faq/post', text)
             .then(response => {
                 temp_id = response.data;
                 console.log('success', response);
