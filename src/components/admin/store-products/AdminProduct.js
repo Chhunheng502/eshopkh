@@ -214,13 +214,26 @@ function AdminProduct() {
             quantity: quantityRef.current.value,
             type: typeRef.current.value,
             primary_image: primary_imageRef.current.files[0],
-            secondary_image1: secondary_image1Ref.current.value,
-            secondary_image2: secondary_image2Ref.current.value,
+            secondary_image1: secondary_image1Ref.current.files[0],
+            secondary_image2: secondary_image2Ref.current.files[0],
             info: infoRef.current.value,
             highlight: highlightRef.current.value
         };
 
-        axios.post('https://eshopkh-server-4xrg3.ondigitalocean.app/api/products/store',  myObj)
+        const form = new FormData();
+
+        form.append('name', nameRef.current.value);
+        form.append('price', priceRef.current.value);
+        form.append('feature', featureRef.current.value);
+        form.append('quantity', quantityRef.current.value);
+        form.append('type', typeRef.current.value);
+        form.append('primary_image', primary_imageRef.current.files[0]);
+        form.append('secondary_image1', secondary_image1Ref.current.files[0]);
+        form.append('secondary_image2', secondary_image2Ref.current.files[0]);
+        form.append('info', infoRef.current.value);
+        form.append('highlight', highlightRef.current.value);
+
+        axios.post('https://eshopkh-server-4xrg3.ondigitalocean.app/api/products/store',  form)
         .then((response) => {
             const temp = {
                 id: response.data,

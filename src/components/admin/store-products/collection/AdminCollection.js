@@ -84,7 +84,12 @@ function AdminCollection() {
             image: imageRef.current.value
         }
 
-        axios.post('https://eshopkh-server-4xrg3.ondigitalocean.app/api/collections/store',  myObj)
+        const form = new FormData();
+
+        form.append('name', nameRef.current.value);
+        form.append('image', imageRef.current.files[0]);
+
+        axios.post('https://eshopkh-server-4xrg3.ondigitalocean.app/api/collections/store',  form)
         .then((response) => {
             console.log('Success:', response);
             const temp = {
@@ -258,7 +263,7 @@ function NewCollectionModal(props) {
             </div>
             <div className="form-group">
                 <label for="newcollection-img">Image</label>
-                <input type="text" className="form-control" ref={imageRef} id="newcollection-img" required />
+                <input type="file" className="form-control" ref={imageRef} id="newcollection-img" required />
             </div>
           </form>
           </Modal.Body>
