@@ -6,6 +6,7 @@ use App\Models\Collection;
 use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CollectionController extends Controller
 {
@@ -69,9 +70,11 @@ class CollectionController extends Controller
      */
     public function store(Request $request)
     {
+        $image_path = Storage::put('eshopkh', $request->image, 'public');
+        
         $collection = Collection::create([
             'name' => $request->name,
-            'image' => $request->image
+            'image' => Storage::url($image_path)
         ]);
 
         return $collection->id;

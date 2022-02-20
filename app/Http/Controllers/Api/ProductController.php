@@ -53,19 +53,19 @@ class ProductController extends Controller
             'type' => $request->type
         ]);
 
-        // $primary_image_path = Storage::put('eshopkh', $request->primary_image, 'public');
+        $primary_image_path = Storage::put('eshopkh', $request->primary_image, 'public');
         // $secondary_image1_path = Storage::put('eshopkh', $request->secondary_image1, 'public');
         // $secondary_image2_path = Storage::put('eshopkh', $request->secondary_image2, 'public');
 
         $product->getDetail()->create([
-            'primary_image' => $request->primary_image,
-            'secondary_image1' => $request->secondary_image1,
-            'secondary_image2' => $request->secondary_image1,
+            'primary_image' => Storage::url($primary_image_path),
+            'secondary_image1' => 'https://cdn.pixabay.com/photo/2015/12/19/02/12/texture-1099399__480.jpg',
+            'secondary_image2' => 'https://cdn.pixabay.com/photo/2015/12/19/02/12/texture-1099399__480.jpg',
             'info' => $request->info,
             'highlight' => $request->highlight
         ]);
 
-        return 'success';
+        return $product->id;
     }
 
     /**
