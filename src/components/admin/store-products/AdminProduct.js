@@ -213,7 +213,7 @@ function AdminProduct() {
             feature: featureRef.current.value,
             quantity: quantityRef.current.value,
             type: typeRef.current.value,
-            primary_image: primary_imageRef.current.value,
+            primary_image: primary_imageRef.current.files[0],
             secondary_image1: secondary_image1Ref.current.value,
             secondary_image2: secondary_image2Ref.current.value,
             info: infoRef.current.value,
@@ -602,15 +602,15 @@ function NewProductModal(props) {
             </div>
             <div className="form-group">
                 <label for="newproduct-pri-img">Primary Image</label>
-                <input type="text" className="form-control" ref={primary_imageRef} id="newproduct-pri-img" required />
+                <input type="file" className="form-control" ref={primary_imageRef} id="newproduct-pri-img" required />
             </div>
             <div className="form-group">
                 <label for="newproduct-sec-img1">Secondary Image 1</label>
-                <input type="text" className="form-control" ref={secondary_image1Ref} id="newproduct-sec-img1" required />
+                <input type="file" className="form-control" ref={secondary_image1Ref} id="newproduct-sec-img1" required />
             </div>
             <div className="form-group">
                 <label for="newproduct-sec-img2">Secondary Image 2</label>
-                <input type="text" className="form-control" ref={secondary_image2Ref} id="newproduct-sec-img2" required />
+                <input type="file" className="form-control" ref={secondary_image2Ref} id="newproduct-sec-img2" required />
             </div>
             <div className="form-group">
                 <label for="newproduct-info">Info</label>
