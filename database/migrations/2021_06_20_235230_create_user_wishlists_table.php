@@ -15,8 +15,8 @@ class CreateUserWishlistsTable extends Migration
     {
         Schema::create('user_wishlists', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->string('product_id');
+            $table->integer('user_id')->constrained()->cascadeOnDelete();
+            $table->string('product_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

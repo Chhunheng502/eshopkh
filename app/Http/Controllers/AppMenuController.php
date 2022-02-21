@@ -52,7 +52,7 @@ class AppMenuController extends Controller
     public function showProductDetail($type, $id)
     {
         return Inertia::render('Product/Detail', [
-            'product' => $this->product->getDetail($id)
+            'product' => Product::with('detail')->find($id)
         ]);
     }
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a5f112b7917539cec605b0e01ab96438",
+    "content-hash": "d47ad03e50b9ba99c9998bcbcf40dd35",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1788,6 +1788,67 @@
                 "source": "https://github.com/laravel/tinker/tree/v2.7.0"
             },
             "time": "2022-01-10T08:52:49+00:00"
+        },
+        {
+            "name": "laravel/ui",
+            "version": "v3.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ui.git",
+                "reference": "e01198123f7f4369d13c1f83a897c3f5e97fc9f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/e01198123f7f4369d13c1f83a897c3f5e97fc9f4",
+                "reference": "e01198123f7f4369d13c1f83a897c3f5e97fc9f4",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^8.42|^9.0",
+                "illuminate/filesystem": "^8.42|^9.0",
+                "illuminate/support": "^8.42|^9.0",
+                "illuminate/validation": "^8.42|^9.0",
+                "php": "^7.3|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.23|^7.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ui\\UiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Ui\\": "src/",
+                    "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Laravel UI utilities and presets.",
+            "keywords": [
+                "laravel",
+                "ui"
+            ],
+            "support": {
+                "source": "https://github.com/laravel/ui/tree/v3.4.2"
+            },
+            "time": "2022-01-25T20:15:56+00:00"
         },
         {
             "name": "league/commonmark",
@@ -6792,6 +6853,72 @@
                 }
             ],
             "time": "2021-12-29T10:10:35+00:00"
+        },
+        {
+            "name": "tightenco/ziggy",
+            "version": "v1.4.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tighten/ziggy.git",
+                "reference": "ffeff44dba822cf45cd2239691526d67b76c3323"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tighten/ziggy/zipball/ffeff44dba822cf45cd2239691526d67b76c3323",
+                "reference": "ffeff44dba822cf45cd2239691526d67b76c3323",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.4@dev"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^3.0 || ^4.0 || ^5.0 || ^6.0 || ^7.0",
+                "phpunit/phpunit": "^6.0 || ^7.0 || ^8.0 || ^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tightenco\\Ziggy\\ZiggyServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tightenco\\Ziggy\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Coulbourne",
+                    "email": "daniel@tighten.co"
+                },
+                {
+                    "name": "Jake Bathman",
+                    "email": "jake@tighten.co"
+                },
+                {
+                    "name": "Jacob Baker-Kretzmar",
+                    "email": "jacob@tighten.co"
+                }
+            ],
+            "description": "Generates a Blade directive exporting all of your named Laravel routes. Also provides a nice route() helper function in JavaScript.",
+            "homepage": "https://github.com/tighten/ziggy",
+            "keywords": [
+                "Ziggy",
+                "javascript",
+                "laravel",
+                "routes"
+            ],
+            "support": {
+                "issues": "https://github.com/tighten/ziggy/issues",
+                "source": "https://github.com/tighten/ziggy/tree/v1.4.3"
+            },
+            "time": "2022-01-28T14:48:33+00:00"
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",

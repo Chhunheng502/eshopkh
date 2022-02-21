@@ -42,7 +42,7 @@ class InventoryController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
-        if($this->productService->create($request->validated())) {
+        if($this->productService->create($request)) {
             return redirect('admin/inventory')->with([
                 'message' => 'Created successfully'
             ]);

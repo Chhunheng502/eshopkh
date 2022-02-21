@@ -3,21 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CouponStoreRequest;
+use App\Repositories\UserCouponRepository;
 use App\Services\CouponService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CouponController extends Controller
 {
+    protected $couponRepository;
     protected $couponService;
 
-    public function __construct(CouponService $couponService)
+    public function __construct(
+        UserCouponRepository $couponRepository,
+        CouponService $couponService
+    )
     {
+        $this->couponRepository = $couponRepository;
         $this->couponService = $couponService;
     }
 
     public function index()
     {
+        dd(UserCouponRepository::guessModelClass());
         return Inertia::render('User/Coupon', [
             'coupons' => $this->couponService->get()
         ]);

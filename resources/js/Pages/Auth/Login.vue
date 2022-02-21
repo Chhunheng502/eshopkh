@@ -29,6 +29,10 @@
                 <div class="text-center">
                     <button type="button" class="btn btn-primary" @click="login"> Login </button>
                 </div>
+                <div class="my-2">
+                    <span style="margin-right:5px">Not Registered Yet?</span>
+                    <Link href="/user/register">Create Account</Link>
+                </div>
             </form>
         </div>
     </AppLayout>
@@ -48,12 +52,13 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { useForm } from '@inertiajs/inertia-vue3'
+import { Link, useForm } from '@inertiajs/inertia-vue3'
 
 import AppLayout from '@/Layouts/AppLayout.vue'
 
 export default defineComponent({
     components: {
+        Link,
         AppLayout
     },
 

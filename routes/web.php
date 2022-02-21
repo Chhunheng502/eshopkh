@@ -9,10 +9,13 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\AppMenuController;
-use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Auth\AdminSessionController;
+use App\Http\Controllers\Auth\UserSessionController;
+use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +42,7 @@ Route::get('contact', [AppMenuController::class, 'showContact']);
 Route::get('about', [AppMenuController::class, 'showAbout']);
 Route::get('collections/{id}', [AppMenuController::class, 'showCollection']);
 
-Route::group(['middleware' => 'auth'], function() {
+Route::middleware(['auth'])->group(function() {
 
     Route::get('user', [UserController::class, 'index']);
     Route::put('user/{user}', [UserController::class, 'update']);
@@ -53,10 +56,11 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::post('user', [UserController::class, 'store']);
 
-Route::post('user/login', [AuthController::class, 'userLogin']);
-Route::delete('user/logout', [AuthController::class, 'userLogout']);
-Route::post('admin/login', [AuthController::class, 'adminLogin']);
-Route::delete('admin/logout', [AuthController::class, 'adminLogout']);
+Route::post('user/login', [UserSessionController::class, 'store']);
+Route::delete('user/logout', [UserSessionController::class, 'destroy']);
+
+Route::post('admin/login', [AdminSessionController::class, 'store']);
+Route::delete('admin/logout', [AdminSessionController::class, 'destroy']);
 
 Route::get('products', [ProductSearchController::class, 'index']);
 
@@ -92,3 +96,9 @@ Route::group(['middleware' => 'auth.admin'], function() {
 
     Route::get('admin/report', [ReportController::class, 'index']);
 });
+
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/resent', [VerificationController::class, 'resend'])->name('verification.resend');
+
+// Auth::routes(['verify' => true]);

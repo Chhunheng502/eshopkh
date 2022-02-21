@@ -11,14 +11,14 @@ class ProductService
     {
         $product = Product::create($request->validated());
 
-        $primary_image_path = $this->productService->uploadImage($request->safe()['primary_image']);
-        $secondary_image1_path = $this->productService->uploadImage($request->safe()['secondary_image1']);
-        $secondary_image2_path = $this->productService->uploadImage($request->safe()['secondary_image2']);
+        $primary_image_path = $request->file('primary_image')->store('images', ['disk' => 'public']);
+        $secondary_image1_path = $request->file('secondary_image1')?->store('images', ['disk' => 'public']);
+        $secondary_image2_path = $request->file('secondary_image2')?->store('images', ['disk' => 'public']);
 
         $product->detail()->create([
-            'primary_image' => $primary_image_path,
-            'secondary_image1' => $secondary_image1_path,
-            'secondary_image2' => $secondary_image2_path,
+            'primary_image' => 'http://127.0.0.1:8000/storage/' . $primary_image_path,
+            'secondary_image1' => 'http://127.0.0.1:8000/storage/' . $secondary_image1_path,
+            'secondary_image2' => 'http://127.0.0.1:8000/storage/' . $secondary_image2_path,
             'info' => $request->info,
             'highlight' => $request->highlight
         ]);
@@ -40,16 +40,16 @@ class ProductService
         $product->fill($request->input())->detail->fill(request(['info', 'highlight']));
 
         if(!is_string($request->primary_image)) {
-            $primary_image_path = $this->uploadImage($request->primary_image);
-            $product->detail->primary_image = $primary_image_path;
+            $primary_image_path = $request->file('primary_image')->store('images', ['disk' => 'public']);
+            $product->detail->primary_image = 'http://127.0.0.1:8000/storage/' . $primary_image_path;
         }
         if(!is_string($request->secondary_image2)) {
-            $secondary_image1_path = $this->uploadImage($request->secondary_image1);
-            $product->detail->secondary_image1 = $secondary_image1_path;
+            $secondary_image1_path = $request->file('secondary_image1')?->store('images', ['disk' => 'public']);
+            $product->detail->secondary_image1 = 'http://127.0.0.1:8000/storage/' . $secondary_image1_path;
         }
         if(!is_string($request->secondary_image2)) {
-            $secondary_image2_path = $this->uploadImage($request->secondary_image2);
-            $product->detail->secondary_image2 = $secondary_image2_path;
+            $secondary_image2_path = $request->file('secondary_image2')?->store('images', ['disk' => 'public']);
+            $product->detail->secondary_image2 = 'http://127.0.0.1:8000/storage/' . $secondary_image2_path;
         }
 
         $product->save();

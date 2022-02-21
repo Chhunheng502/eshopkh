@@ -15,7 +15,7 @@ class CreateUserCouponsTable extends Migration
     {
         Schema::create('user_coupons', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
+            $table->integer('user_id')->constrained()->cascadeOnDelete();
             $table->string('product_id');
             $table->string('type');
             $table->string('code')->unique();

@@ -92,12 +92,12 @@ class Product extends Model
                     ->withDetail();
     }
 
-    public function getDetail($id)
-    {
-        return Product::find($id)
-                ->with('detail')
-                ->get()[0];
-    }
+    // public function getDetail($id)
+    // {
+    //     return Product::find($id)
+    //             ->with('detail')
+    //             ->get()[0];
+    // }
 
     public function getByCollection($id) {
         return $this->collection($id)
