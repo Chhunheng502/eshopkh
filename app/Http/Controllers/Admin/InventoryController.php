@@ -6,26 +6,34 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Collection;
+use App\Repositories\CollectionRepository;
+use App\Repositories\ProductRepository;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class InventoryController extends Controller
 {
-    protected $product;
+    protected $productRepository;
     protected $productService;
+    protected $collectionRepository;
 
-    public function __construct(Product $product, ProductService $productService)
+    public function __construct(
+        ProductRepository $productRepository,
+        ProductService $productService,
+        CollectionRepository $collectionRepository
+    )
     {
-        $this->product = $product;
+        $this->productRepository = $productRepository;
         $this->productService = $productService;
+        $this->collectionRepository = $collectionRepository;
     }
 
     public function index()
     {
         return Inertia::render('Admin/Product/Inventory/Index', [
-            'products' => $this->product->getAllForAdmin(),
-            'collections' => Collection::get(),
+            'products' => $this->productRepository->getAllForAdmin(),
+            'collections' => $this->collectionRepository->getAll(),
             'filters'  => [
                 'gender' => request('gender'),
                 'type' => request('type'),
@@ -42,7 +50,7 @@ class InventoryController extends Controller
 
     public function store(ProductStoreRequest $request)
     {
-        if($this->productService->create($request)) {
+        if($this->productRepository->create($request)) {
             return redirect('admin/inventory')->with([
                 'message' => 'Created successfully'
             ]);
@@ -56,13 +64,13 @@ class InventoryController extends Controller
     public function edit($id)
     {
         return Inertia::render('Admin/Product/Inventory/Edit', [
-            'product' => Product::with('detail')->find($id)
+            'product' => $this->productRepository->getWithDetailById($id)
         ]);
     }
 
     public function update(Request $request, $id)
     {
-        if($this->productService->update($request, $id)) {
+        if($this->productRepository->update($request, $id)) {
             return redirect('admin/inventory')->with([
                 'message' => 'Updated successfully'
             ]);
@@ -75,7 +83,7 @@ class InventoryController extends Controller
 
     public function destroy($id)
     {
-        Product::find($id)->delete();
+        $this->productRepository->delete($id);
 
         return back()->with([
             'message' => 'Deleted successfully'
@@ -84,7 +92,7 @@ class InventoryController extends Controller
 
     public function destroyMany(Request $request)
     {
-        Product::whereIn('id', $request->data)->delete();
+        $this->productRepository->deleteByIds($request->data);
 
         return back()->with([
             'message' => 'Deleted successfully'

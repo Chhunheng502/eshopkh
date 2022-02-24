@@ -59,23 +59,12 @@
                                         <input type="text" class="form-control" id="profile-address" v-model="address" :disabled="!showReset" />
                                     </div>
                                 </div>
-                                <div v-show="showReset" class="form-group">
-                                    <div class="col-xs-6">
-                                        <label for="password"><h4>New Password</h4></label>
-                                        <input type="password" class="form-control" name="password" id="password" placeholder="New password" v-model="password" />
-                                    </div>
-                                </div>
-                                <div v-show="showReset" class="form-group">
-                                    <div class="col-xs-6">
-                                        <label for="password2"><h4>Verify Password</h4></label>
-                                        <input type="password" class="form-control" name="password2" id="password2" placeholder="Verify password" v-model="confirm_password" />
-                                    </div>
-                                </div>
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <br>
-                                        <button class="btn btn-lg btn-success" type="button" v-if="showReset" @click="update"><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
-                                        <button class="btn btn-lg" type="button" v-else @click="showReset = true"><i class="glyphicon glyphicon-repeat"></i>Reset</button>
+                                        <button v-if="showReset" type="button" class="btn btn-success mx-2" @click="update"><i class="glyphicon glyphicon-ok-sign"></i>Save</button>
+                                        <button v-else type="button" class="btn mx-2" @click="showReset = true"><i class="glyphicon glyphicon-repeat"></i>Update Profile</button>
+                                        <Link :href="route('password.request')">Reset Password</Link>
                                     </div>
                                 </div>
                             </form>
@@ -117,8 +106,6 @@ export default defineComponent({
             email: this.$page.props.auth.user.email,
             phone: this.$page.props.auth.user.phone,
             address: this.$page.props.auth.user.address,
-            password: "",
-            confirm_password: "",
             showReset: false
         }
     },
@@ -131,11 +118,6 @@ export default defineComponent({
             this.form.append('email', this.email);
             this.form.append('phone', this.phone);
             this.form.append('address', this.address);
-
-            if(this.password != "") {
-                this.form.append('password', this.password);
-                this.form.append('confirm_password', this.confirm_password);
-            }
 
             Inertia.post(`http://127.0.0.1:8000/user/${this.$page.props.auth.user.id}`, this.form, {
                 onSuccess: () => this.showReset = false,

@@ -13,7 +13,9 @@
                             <div v-else>
                                 Before proceeding, please check your email for a verification link.
                                 If you did not receive the email,
-                                <Link :href="route('verification.resend')" method="post">click here to request another</Link>
+                                <Link :href="route('verification.resend')" method="post">
+                                    click here to request another
+                                </Link>
                             </div>
                         </div>
                     </div>

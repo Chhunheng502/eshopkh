@@ -100,23 +100,12 @@ class Order extends Model
                 );
     }
 
-    // public function scopeGetMost($query, $value = 0)
-    // {
-    //     return $query->
-    // }
-
     public function getNew()
     {
         return $this->with(['detail', 'user'])
                     ->where('is_accepted', false)
                     ->paginate(15);
     }
-
-    // public function scopeCurrentWeek()
-    // {
-    //     return $this->accepted()
-    //                 ->whereBetween('created_at', [Carbon::now()->startOfMonth(), Carbon::now()->endOfMonth()]);
-    // }
 
     public function getCreatedAtAttribute($created_at)
     {

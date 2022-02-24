@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminMenuController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CollectionController;
 use App\Http\Controllers\Admin\CollectionDetailController;
 use App\Http\Controllers\Admin\ContactController;
@@ -10,12 +10,13 @@ use App\Http\Controllers\Admin\OverviewController;
 use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\AppMenuController;
 use App\Http\Controllers\Auth\AdminSessionController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\UserSessionController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\CouponController;
 use App\Http\Controllers\ProductSearchController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,10 +30,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// _don't forget to add middleware (route protection)
-// _need improvement for naming controller and route
-// _sort routes by order
-
 Route::get('/', [AppMenuController::class, 'index']);
 Route::get('user/register', [AppMenuController::class, 'showRegisterForm']);
 Route::get('user/login', [AppMenuController::class, 'showLoginForm'])->name('user.login');
@@ -42,7 +39,14 @@ Route::get('contact', [AppMenuController::class, 'showContact']);
 Route::get('about', [AppMenuController::class, 'showAbout']);
 Route::get('collections/{id}', [AppMenuController::class, 'showCollection']);
 
-Route::middleware(['auth'])->group(function() {
+Route::get('products', [ProductSearchController::class, 'index']);
+
+Route::post('user', [UserController::class, 'store']);
+
+Route::post('user/login', [UserSessionController::class, 'store']);
+Route::delete('user/logout', [UserSessionController::class, 'destroy']);
+
+Route::middleware(['auth', 'verified'])->group(function() {
 
     Route::get('user', [UserController::class, 'index']);
     Route::put('user/{user}', [UserController::class, 'update']);
@@ -54,18 +58,21 @@ Route::middleware(['auth'])->group(function() {
     Route::post('orders', [OrderController::class, 'store']);
 });
 
-Route::post('user', [UserController::class, 'store']);
+Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
+Route::post('email/resent', [VerificationController::class, 'resend'])->name('verification.resend');
 
-Route::post('user/login', [UserSessionController::class, 'store']);
-Route::delete('user/logout', [UserSessionController::class, 'destroy']);
+Route::get('password/reset', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+Route::post('password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
+Route::post('password/reset', [ResetPasswordController::class, 'reset'])->name('password.update');
+
+// -----------Admin Routes---------------
+
+Route::get('admin', [AdminController::class, 'showLoginForm']);
 
 Route::post('admin/login', [AdminSessionController::class, 'store']);
 Route::delete('admin/logout', [AdminSessionController::class, 'destroy']);
-
-Route::get('products', [ProductSearchController::class, 'index']);
-
-// improve your writing on this one
-Route::get('admin', [AdminMenuController::class, 'index']);
 
 Route::group(['middleware' => 'auth.admin'], function() {
 
@@ -96,9 +103,3 @@ Route::group(['middleware' => 'auth.admin'], function() {
 
     Route::get('admin/report', [ReportController::class, 'index']);
 });
-
-Route::get('email/verify', [VerificationController::class, 'show'])->name('verification.notice');
-Route::get('email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->name('verification.verify');
-Route::post('email/resent', [VerificationController::class, 'resend'])->name('verification.resend');
-
-// Auth::routes(['verify' => true]);

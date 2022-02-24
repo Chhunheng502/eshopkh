@@ -2,19 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Collection;
-use App\Models\Product;
+use App\Repositories\CollectionRepository;
+use App\Repositories\ProductRepository;
 use Inertia\Inertia;
 
 class AppMenuController extends Controller
 {
-    protected $collection;
-    protected $product;
+    protected $collectionRepository;
+    protected $productRepository;
 
-    public function __construct(Collection $collection, Product $product)
+    public function __construct(
+        CollectionRepository $collectionRepository,
+        ProductRepository $productRepository
+    )
     {
-        $this->collection = $collection;
-        $this->product = $product;
+        $this->collectionRepository = $collectionRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function index()
@@ -22,8 +25,8 @@ class AppMenuController extends Controller
         // need improvement on products prop (need to be dynamic)
 
         return Inertia::render('Home/Index', [
-            'collections' => Collection::get(),
-            'collection' => $this->collection->getFirst()
+            'collections' => $this->collectionRepository->getAll(),
+            'collection' => $this->collectionRepository->getFirstWithDetail()->detail
         ]);
     }
 
@@ -40,7 +43,7 @@ class AppMenuController extends Controller
     public function showProduct($type)
     {
         return Inertia::render('Product/Index', [
-            'products' => $this->product->getByType($type),
+            'products' => $this->productRepository->getByType($type),
             'filters' => [
                 'search' => request('search'),
                 'sort' => request('sort')
@@ -52,7 +55,7 @@ class AppMenuController extends Controller
     public function showProductDetail($type, $id)
     {
         return Inertia::render('Product/Detail', [
-            'product' => Product::with('detail')->find($id)
+            'product' => $this->productRepository->getWithDetailById($id)
         ]);
     }
 
@@ -69,7 +72,7 @@ class AppMenuController extends Controller
     public function showCollection($id)
     {
         return Inertia::render('Product/Index', [
-            'products' => $this->product->getByCollection($id),
+            'products' => $this->productRepository->getByCollection($id),
             'filters' => [
                 'search' => request('search'),
                 'sort' => request('sort')

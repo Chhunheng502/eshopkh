@@ -4,47 +4,42 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CollectionStoreRequest;
-use App\Models\Collection;
+use App\Repositories\CollectionRepository;
 use App\Services\CollectionService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CollectionController extends Controller
 {
-    protected $collection;
+    protected $collectionRepository;
     protected $collectionService;
 
     public function __construct(
-        Collection $collection,
+        CollectionRepository $collectionRepository,
         CollectionService $collectionService
     )
     {
-        $this->collection = $collection;
+        $this->collectionRepository = $collectionRepository;
         $this->collectionService = $collectionService;
     }
 
     public function index()
     {
         return Inertia::render('Admin/Product/Collection/Index', [
-            'collections' => $this->collection->getAll()
+            'collections' => $this->collectionRepository->getAllWithDetailCount()
         ]);
     }
 
     public function show($id)
     {
         return Inertia::render('Admin/Product/Collection/Detail', [
-            'collection' => $this->collection->getCollection($id)
+            'collection' => $this->collectionRepository->getWithDetailById($id)
         ]);
     }
 
     public function store(CollectionStoreRequest $request)
     {
-        $image_path = $this->collectionService->uploadImage($request->validated()['image']);
-
-        Collection::create([
-            'name' => $request->validated()['name'],
-            'image' => $image_path
-        ]);
+        $this->collectionRepository->create($request);
 
         return back()->with([
             'message' => 'Created successfully'
@@ -53,16 +48,7 @@ class CollectionController extends Controller
 
     public function update(Request $request, $id)
     {
-        $collection = Collection::find($id);
-
-        $collection->name = $request->name;
-
-        if(!is_string($request->image)) {
-            $image_path = $this->collectionService->uploadImage($request->image);
-            $collection->image = $image_path;
-        }
-
-        $collection->save();
+        $this->collectionRepository->update($request, $id);
 
         return back()->with([
             'message' => 'Updated successfully'
@@ -71,7 +57,7 @@ class CollectionController extends Controller
 
     public function destroy($id)
     {
-        Collection::find($id)->delete();
+        $this->collectionRepository->delete($id);
 
         return back()->with([
             'message' => 'Deleted successfully'

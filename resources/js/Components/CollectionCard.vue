@@ -14,7 +14,7 @@
                 <div v-if="isAdmin" class="card-title d-flex justify-content-between">
                     <p class="text-dark">
                         {{ collection.name }}
-                        <span class="text-secondary">{{ collection.detail.length }}</span>
+                        <span class="text-secondary">{{ collection.detail_count }}</span>
                     </p>
                     <form class="d-flex align-items-center">
                         <Modal ref="updateCollectionModal">

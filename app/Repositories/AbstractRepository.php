@@ -48,6 +48,16 @@ abstract class AbstractRepository implements RepositoryInterface
         return $this->model->all();
     }
 
+    public function delete($id)
+    {
+        return $this->model->destroy($id);
+    }
+
+    public function deleteByIds(array $ids)
+    {
+        return $this->model->whereIn('id', $ids)->delete();
+    }
+
     public function getFirstWhere(...$params): ?Model
     {
         return $this->model->firstWhere(...$params);

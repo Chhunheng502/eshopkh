@@ -67,40 +67,4 @@ class Product extends Model
                     )->flatten()
                 );
     }
-
-    public function getAll()
-    {
-        return $this->withDetail();
-    }
-
-    public function getAllForAdmin()
-    {
-        return $this->with('detail')
-                ->filter(request([
-                    'gender',
-                    'type',
-                    'search',
-                    'sort',
-                ]))
-                ->paginate(15)
-                ->withQueryString();
-    }
-
-    public function getByType($type)
-    {
-        return $this->type($type)
-                    ->withDetail();
-    }
-
-    // public function getDetail($id)
-    // {
-    //     return Product::find($id)
-    //             ->with('detail')
-    //             ->get()[0];
-    // }
-
-    public function getByCollection($id) {
-        return $this->collection($id)
-                    ->withDetail();
-    }
 }

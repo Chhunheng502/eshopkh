@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Inertia\Inertia;
 
-class AdminMenuController extends Controller
+class AdminController extends Controller
 {
-    public function index()
+    public function showLoginForm()
     {
         return Inertia::render('Admin/Login');
     }

@@ -12,9 +12,8 @@ class UserUpdateRequest extends FormRequest
             'first_name' => ['required_with:last_name', 'max:25'],
             'last_name' => ['max:25'],
             'email' => ['required', 'email'],
-            'password' => ['min:6', 'same:confirm_password'],
             'phone' => ['required', 'min:8', 'max:10'],
-            'address' => ['required'],   
+            'address' => ['required'],
         ];
     }
 }

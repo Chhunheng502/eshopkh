@@ -47,10 +47,6 @@ class UserService
                 'address'
         ]));
 
-        if(request()->has('password')) {
-            $user->update(['password' => $data->password]);
-        }
-
         return true;
     }
 }

@@ -1,43 +1,47 @@
 <template>
     <AppLayout>
-        <div class="container">
+        <div class="container mt-5">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
-                        <div class="card-header">{{ __('Reset Password') }}</div>
-
+                        <div class="card-header">Reset Password</div>
                         <div class="card-body">
-                            @if (session('status'))
-                                <div class="alert alert-success" role="alert">
-                                    {{ session('status') }}
+                            <div v-if="$page.props.session.status" class="alert alert-success" role="alert">
+                                {{ $page.props.session.status }}
+                            </div>
+                            <div class="row mb-3">
+                                <label for="email" class="col-md-4 col-form-label text-md-end">Email Address</label>
+                                <div class="col-md-6">
+                                    <input
+                                        id="email"
+                                        type="email"
+                                        class="form-control"
+                                        :class="{'is-invalid': errors.email}"
+                                        name="email"
+                                        v-model="email"
+                                        required
+                                        autocomplete="email"
+                                        autofocus
+                                    >
+                                    <span v-if="errors.email" class="invalid-feedback" role="alert">
+                                        <strong>{{ errors.email }}</strong>
+                                    </span>
                                 </div>
-                            @endif
-
-                            <form method="POST" action="{{ route('password.email') }}">
-                                @csrf
-
-                                <div class="row mb-3">
-                                    <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                                    <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                                        @error('email')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
+                            </div>
+                            <div class="row mb-0">
+                                <div class="col-md-6 offset-md-4">
+                                    <Link
+                                        :href="route('password.email')"
+                                        method="post"
+                                        :data="{email: email}"
+                                        as="button"
+                                        type="button"
+                                        class="btn btn-primary"
+                                    >
+                                        Send Password Reset Link
+                                    </Link>
                                 </div>
-
-                                <div class="row mb-0">
-                                    <div class="col-md-6 offset-md-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            {{ __('Send Password Reset Link') }}
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,9 +62,13 @@ export default defineComponent({
         AppLayout
     },
 
+    props: {
+        errors: Object
+    },
+
     data() {
         return {
-
+            email: this.$page.props.auth.user.email
         }
     }
 })
