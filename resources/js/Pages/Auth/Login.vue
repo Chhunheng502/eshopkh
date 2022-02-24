@@ -26,6 +26,9 @@
                         v-model="form.password"
                     />
                 </div>
+                <div class="d-flex justify-content-end my-2">
+                    <Link :href="route('password.request')">Forgot Password?</Link>
+                </div>
                 <div class="text-center">
                     <button type="button" class="btn btn-primary" @click="login"> Login </button>
                 </div>

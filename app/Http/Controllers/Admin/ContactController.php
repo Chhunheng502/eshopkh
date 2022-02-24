@@ -3,29 +3,30 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Product;
-use App\Models\User;
+use App\Repositories\ProductRepository;
+use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class ContactController extends Controller
 {
-    protected $user;
+    protected $userRepository;
+    protected $productRepository;
 
-    public function __construct(User $user)
+    public function __construct(
+        UserRepository $userRepository,
+        ProductRepository $productRepository
+    )
     {
-        $this->user = $user;
+        $this->userRepository = $userRepository;
+        $this->productRepository = $productRepository;
     }
 
     public function index()
     {
         return Inertia::render('Admin/Customer/Contact', [
-            'users' => User::filter(request(['search', 'sort']))
-                                ->paginate(15)
-                                ->withQueryString(),
-            'products' => Product::with(['detail' => function($query) {
-                                $query->selectNecessary();
-                            }])->get()
+            'users' => $this->userRepository->getWithFilters(),
+            'products' => $this->productRepository->getWithNecessaryDetail()
         ]);
     }
 }

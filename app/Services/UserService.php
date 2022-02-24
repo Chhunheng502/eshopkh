@@ -9,7 +9,7 @@ class UserService
 {
     public function getTotalOrders()
     {
-        return count(Auth::user()->orders);
+        return Auth::user()->orders->count();
     }
 
     public function getTotalSpending()
@@ -22,7 +22,7 @@ class UserService
 
     public function getTotalCoupons()
     {
-        return count(Auth::user()->coupons);
+        return Auth::user()->coupons->count();
     }
 
     public function register($data)
@@ -35,18 +35,5 @@ class UserService
         }
         
         return false;
-    }
-
-    public function update($data, $user)
-    {
-        $user->update($data->only([
-                'first_name',
-                'last_name',
-                'email',
-                'phone',
-                'address'
-        ]));
-
-        return true;
     }
 }

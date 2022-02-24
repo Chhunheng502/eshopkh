@@ -68,7 +68,7 @@ export default defineComponent({
 
     data() {
         return {
-            email: this.$page.props.auth.user.email
+            email: this.$page.props.auth.user?.email
         }
     }
 })

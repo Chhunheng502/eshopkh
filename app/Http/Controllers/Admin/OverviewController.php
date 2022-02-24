@@ -3,19 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
+use App\Repositories\OrderRepository;
 use App\Services\SalesService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class OverviewController extends Controller
 {
-    protected $order;
+    protected $orderRepository;
     protected $salesService;
 
-    public function __construct(Order $order, SalesService $salesService)
+    public function __construct(OrderRepository $orderRepository, SalesService $salesService)
     {
-        $this->order = $order;
+        $this->orderRepository = $orderRepository;
         $this->salesService = $salesService;
     }
 
@@ -36,7 +36,7 @@ class OverviewController extends Controller
                 'old' => $this->salesService->getOldOrders(),
                 'new' => $this->salesService->getNewOrders()
             ],
-            'recentOrders' => $this->order->recent()->with('user')->get()
+            'recentOrders' => $this->orderRepository->getRecent()
         ]);
     }
 }

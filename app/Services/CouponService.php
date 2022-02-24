@@ -2,41 +2,10 @@
 
 namespace App\Services;
 
-use App\Jobs\ProcessCoupon;
-use App\Mail\CouponReceived;
-use App\Models\User;
 use App\Models\UserCoupon;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
 
 class CouponService
 {
-    public function get()
-    {
-        return UserCoupon::with('product')
-                        ->where('user_id', Auth::id())
-                        ->isValid()
-                        ->get();
-    }
-
-    public function store($coupon)
-    {
-        foreach($coupon->user_ids as $user_id) {
-            $coupon->merge(['code' => Str::random(6)]);
-            $result = User::find($user_id)->coupons()->create($coupon->all());
-            // need improvement (not an accurate time frame) - should convert to minute
-            ProcessCoupon::dispatch($result)->delay(now()->addDays($result->expired_date));
-            Mail::to(User::find($user_id))->send(new CouponReceived($result));
-        }
-
-        if($result) {
-            return true;
-        }
-        
-        return false;
-    }
-
     public function validatedCode($code)
     {
         if(UserCoupon::where('code', $code)) {

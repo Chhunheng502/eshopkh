@@ -24,16 +24,15 @@ class CouponController extends Controller
 
     public function index()
     {
-        dd(UserCouponRepository::guessModelClass());
         return Inertia::render('User/Coupon', [
-            'coupons' => $this->couponService->get()
+            'coupons' => $this->couponRepository->getValid()
         ]);
     }
 
     public function store(CouponStoreRequest $request)
     {
         //can only use safe with CouponStoreRequest
-        if($this->couponService->store($request)) {
+        if($this->couponRepository->store($request)) {
             return back()->with([
                 'message' => 'Dispatched Successfully'
             ]);

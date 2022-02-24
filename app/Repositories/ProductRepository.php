@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Services\ProductService;
 
-class ProductRepository extends AbstractRepository
+class ProductRepository extends AbstractRepository implements EloquentDetailInterface
 {
     protected $productService;
     
@@ -15,14 +15,27 @@ class ProductRepository extends AbstractRepository
         $this->productService = $productService;
     }
 
-    public function getAllWithDetail()
+    // this method is not used
+    public function getFirstWithDetail()
     {
-        return $this->model->withDetail();
+        return $this->model->with('detail')->first();
     }
 
     public function getWithDetailById($id)
     {
         return $this->model->with('detail')->find($id);
+    }
+
+    public function getAllWithDetail()
+    {
+        return $this->model->withDetail();
+    }
+
+    public function getWithNecessaryDetail()
+    {
+        return $this->model->with(['detail' => function($query) {
+                            $query->selectNecessary();
+                        }])->get();
     }
 
     public function getAllForAdmin()
@@ -40,13 +53,12 @@ class ProductRepository extends AbstractRepository
 
     public function getByType($type)
     {
-        return $this->model->type($type)
-                    ->withDetail();
+        return $this->model->type($type)->withDetail();
     }
 
-    public function getByCollection($id) {
-        return $this->model->collection($id)
-                    ->withDetail();
+    public function getByCollection($id)
+    {
+        return $this->model->collection($id)->withDetail();
     }
 
     public function create($request)

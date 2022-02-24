@@ -100,13 +100,6 @@ class Order extends Model
                 );
     }
 
-    public function getNew()
-    {
-        return $this->with(['detail', 'user'])
-                    ->where('is_accepted', false)
-                    ->paginate(15);
-    }
-
     public function getCreatedAtAttribute($created_at)
     {
         return Carbon::createFromTimeStamp(strtotime($created_at) )->diffForHumans();

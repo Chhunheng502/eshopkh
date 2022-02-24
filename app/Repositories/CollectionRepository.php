@@ -18,8 +18,7 @@ class CollectionRepository extends AbstractRepository implements EloquentDetailI
 
     public function getFirstWithDetail()
     {
-        return $this->model->withDetail()
-                    ->first();
+        return $this->model->withDetail()->first();
     }
 
     public function getWithDetailById($id)
@@ -27,6 +26,12 @@ class CollectionRepository extends AbstractRepository implements EloquentDetailI
         return CollectionDetail::withDetail()
         ->where('collection_id', $id)
         ->paginate(15);
+    }
+
+    // this method is not used
+    public function getAllWithDetail()
+    {
+        return $this->model->with('detail')->get();
     }
 
     public function getAllWithDetailCount()
@@ -61,5 +66,19 @@ class CollectionRepository extends AbstractRepository implements EloquentDetailI
         $collection->save();
 
         return true;
+    }
+
+    public function addProduct($collection_id, $product_id)
+    {
+        $this->model->find($collection_id)->detail()->create([
+            'product_id' => $product_id
+        ]);
+
+        return true;
+    }
+
+    public function deleteProduct($id)
+    {
+        return CollectionDetail::where('product_id', $id)->delete();
     }
 }

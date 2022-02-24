@@ -5,16 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use App\Repositories\UserRepository;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class UserController extends Controller
 {
+    protected $userRepository;
     protected $userService;
 
-    public function __construct(UserService $userService)
+    public function __construct(
+        UserRepository $userRepository,
+        UserService $userService
+    )
     {
+        $this->userRepository = $userRepository;
         $this->userService = $userService;
     }
 
@@ -38,7 +44,7 @@ class UserController extends Controller
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        if($this->userService->update($request->safe(), $user)) {
+        if($this->userRepository->update($request->safe(), $user)) {
             return back()->with([
                 'message' => 'Updated successfully'
             ]);

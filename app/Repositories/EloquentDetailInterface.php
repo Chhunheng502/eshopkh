@@ -11,5 +11,5 @@ interface EloquentDetailInterface
 
     public function getWithDetailById($id);
 
-    // public function getAllWithDetail();
+    public function getAllWithDetail();
 }
