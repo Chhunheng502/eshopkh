@@ -60,7 +60,7 @@ class Order extends Model
     {
         return $query->whereBetween('created_at',
                     [
-                        Carbon::now()->startOfMonth(),
+                        Carbon::now()->startOfMonth()->addWeeks($value - 1),
                         Carbon::now()->startOfMonth()->addWeeks($value)
                     ]
                 );
