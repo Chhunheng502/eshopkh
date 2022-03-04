@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductStoreRequest;
-use App\Models\Collection;
 use App\Repositories\CollectionRepository;
 use App\Repositories\ProductRepository;
 use App\Services\ProductService;

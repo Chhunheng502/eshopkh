@@ -26,7 +26,7 @@ class AppMenuController extends Controller
 
         return Inertia::render('Home/Index', [
             'collections' => $this->collectionRepository->getAll(),
-            'collection' => $this->collectionRepository->getFirstWithDetail()->detail
+            'collection' => $this->collectionRepository->getFirstWithDetail()?->detail
         ]);
     }
 

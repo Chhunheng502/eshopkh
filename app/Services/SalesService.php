@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Filters\TimeFilters;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\User;
@@ -47,7 +48,7 @@ class SalesService
         DB::statement("SET SQL_MODE=''");
 
         if($value == 'all') {
-            return OrderDetail::filter(request(['period']))
+            return OrderDetail::filter(new TimeFilters)
                                 ->groupBy('product_id')
                                 ->orderBy(DB::raw('sum(quantity)'), 'DESC')
                                 ->select('id', 'product_id', 'product_name', DB::raw('sum(quantity) as total_quantity'))
@@ -71,7 +72,7 @@ class SalesService
     public function getNewRevenue($value = 'month')
     {
         if($value == 'all') {
-            return doubleval(order::filter(request(['period']))->sum('total_cost'));
+            return doubleval(order::filter(new TimeFilters)->sum('total_cost'));
         } else {
             return doubleval(order::currentMonth()->sum('total_cost'));
         }
@@ -85,7 +86,7 @@ class SalesService
     public function getNewUsers($value = 'month')
     {
         if($value == 'all') {
-            return intval(User::filter(request(['period']))->count());
+            return intval(User::filter(new TimeFilters)->count());
         } else {
             return intval(User::currentMonth()->count());
         }
@@ -99,7 +100,7 @@ class SalesService
     public function getNewOrders($value = 'month')
     {
         if($value == 'all') {
-            return intval(Order::filter(request(['period']))->count());
+            return intval(Order::filter(new TimeFilters)->count());
         } else {
             return intval(Order::currentMonth()->count());
         }

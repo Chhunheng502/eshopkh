@@ -5,7 +5,7 @@
         <div class="dashboard-event">
             <div class="form-group">
                 <label for="sort-by-gender">Sort by gender:</label>
-                <select class="form-select" @change="handleSort" id="sort-by-gender">
+                <select class="form-select" id="sort-by-gender" v-model="gender">
                     <option value="all">All</option>
                     <option value="M">Male</option>
                     <option value="F">Female</option>
@@ -132,11 +132,13 @@ export default defineComponent({
 
     props: {
         users: Object,
-        products: Array
+        products: Array,
+        filters: Array
     },
 
     data() {
         return {
+            gender: this.filters['gender'] ?? 'all',
             search: "",
             form: {
                 user_ids: [],
@@ -150,6 +152,13 @@ export default defineComponent({
     },
 
     watch: {
+        gender: function(value) {
+            Inertia.get(this.$page.url, {gender: value}, {
+                preserveState: true,
+                replace: true
+            })
+        },
+
         search: throttle(function(value) {
             Inertia.get(this.$page.url, {search: value}, {
                 preserveState: true,
@@ -159,13 +168,6 @@ export default defineComponent({
     },
 
     methods: {
-        handleSort(event) {
-            Inertia.get(this.$page.url, {sort: event.target.value}, {
-                preserveState: true,
-                replace: true
-            })
-        },
-
         selectItem(id) {
             if($('#table-contact-' + id).hasClass("selected-item")) {
                 $('#table-contact-' + id).removeClass("selected-item");

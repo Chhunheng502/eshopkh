@@ -2,11 +2,13 @@
 
 namespace App\Repositories;
 
+use App\Filters\UserFilters;
+
 class UserRepository extends AbstractRepository
 {
     public function getWithFilters()
     {
-        return $this->model->filter(request(['search', 'sort']))
+        return $this->model->filter(new UserFilters)
                             ->paginate(15)
                             ->withQueryString();
     }

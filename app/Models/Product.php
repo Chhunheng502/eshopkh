@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Filters\ProductFilters;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,32 +17,9 @@ class Product extends Model
         return $this->hasOne(ProductDetail::class);
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeFilter($query, $filters)
     {
-        $query->when($filters['gender'] ?? false, fn($query, $gender) =>
-            $gender=='all' ? '' : $query->where(fn($query) =>
-                $query->where('type', 'like', '%' . $gender . '%')
-            )
-        );
-
-        $query->when($filters['type'] ?? false, fn($query, $type) =>
-            $type=='all' ? '' : $query->where(fn($query) =>
-                $query->where('type', 'like', '%' . $type . '%')
-            )
-        );
-
-        $query->when($filters['search'] ?? false, fn($query, $search) =>
-            $query->where(fn($query) =>
-                $query->where('name', 'like', '%' . $search . '%')
-            )
-        );
-
-        $query->when($filters['sort'] ?? false, fn($query, $sort) =>
-            $query->orderBy(
-                str_replace(['_asc', '_desc'], '', $sort),
-                str_replace(['name_', 'price_', 'quantity_'], '', $sort)
-            )
-        );
+        return $filters->apply($query);
     }
 
     public function scopeWithDetail($query)
@@ -49,7 +27,7 @@ class Product extends Model
         return $query->with(['detail' => function($query) {
                     $query->selectNecessary();
                 }])
-                ->filter(request(['search', 'sort']))
+                ->filter(new ProductFilters)
                 ->paginate(15)
                 ->withQueryString();
     }

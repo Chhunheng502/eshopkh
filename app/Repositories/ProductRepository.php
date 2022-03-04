@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Filters\ProductFilters;
 use App\Services\ProductService;
 
 class ProductRepository extends AbstractRepository implements EloquentDetailInterface
@@ -41,12 +42,7 @@ class ProductRepository extends AbstractRepository implements EloquentDetailInte
     public function getAllForAdmin()
     {
         return $this->model->with('detail')
-                ->filter(request([
-                    'gender',
-                    'type',
-                    'search',
-                    'sort',
-                ]))
+                ->filter(new ProductFilters)
                 ->paginate(15)
                 ->withQueryString();
     }

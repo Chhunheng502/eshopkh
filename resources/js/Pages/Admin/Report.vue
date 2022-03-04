@@ -3,7 +3,7 @@
         <h2 class="dashboard-header">Report Page</h2>
         <div class="dashboard-event">
             <div class="form-group">
-                <select class="form-select" v-model="period">
+                <select class="form-select" v-model="selectedMonth">
                     <option value="all">All</option>
                     <option v-for="month in months" :value="month">{{ month }}</option>
                 </select>
@@ -64,7 +64,7 @@ export default defineComponent({
 
     data() {
         return {
-            period: this.filters['period'] ?? 'all',
+            selectedMonth: this.filters['month'] ?? 'all',
             months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
             revenue_data: {
                 title: 'Total Revenue',
@@ -82,8 +82,8 @@ export default defineComponent({
     },
 
     watch: {
-        period: function(value) {
-            Inertia.get(this.$page.url, {period: value}, {
+        selectedMonth: function(value) {
+            Inertia.get(this.$page.url, {month: value}, {
                 replace: true
             })
         },

@@ -25,7 +25,7 @@ class ReportController extends Controller
             'totalUsers' => $this->salesService->getNewUsers('all'),
             'totalOrders' => $this->salesService->getNewOrders('all'),
             'filters' => [
-                'period' => request('period')
+                'month' => request('month')
             ]
         ]);
     }

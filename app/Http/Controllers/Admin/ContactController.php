@@ -26,7 +26,10 @@ class ContactController extends Controller
     {
         return Inertia::render('Admin/Customer/Contact', [
             'users' => $this->userRepository->getWithFilters(),
-            'products' => $this->productRepository->getWithNecessaryDetail()
+            'products' => $this->productRepository->getWithNecessaryDetail(),
+            'filters' => [
+                'gender' => request('gender')
+            ]
         ]);
     }
 }

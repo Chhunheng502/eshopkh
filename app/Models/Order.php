@@ -20,33 +20,9 @@ class Order extends Model
         return $this->hasMany(OrderDetail::class);
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeFilter($query, $filters)
     {
-        // improve your code here
-        $months = [
-            'Jan' => 1,
-            'Feb' => 2,
-            'Mar' => 3,
-            'Apr' => 4,
-            'May' => 5,
-            'Jun' => 6,
-            'Jul' => 7,
-            'Aug' => 8,
-            'Sep' => 9,
-            'Oct' => 10,
-            'Nov' => 11,
-            'Dec' => 12
-        ];
-
-        $query->when($filters['period'] ?? false, fn($query, $period) =>
-            $period=='all' ? '' : $query->where(fn($query) =>
-                $query->accepted()
-                        ->whereBetween('created_at', [
-                        Carbon::createFromFormat('m', $months[$period])->startOfMonth(),
-                        Carbon::createFromFormat('m', $months[$period])->endOfMonth()
-                ])
-            )
-        );
+        return $filters->apply($query);
     }
 
     public function scopeAccepted($query)
